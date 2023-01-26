@@ -81,6 +81,7 @@
 		1133393B2982C3A600026925 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		113339402982C75000026925 /* SwinjectInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectInit.swift; sourceTree = "<group>"; };
 		113339422982C77600026925 /* Container+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+.swift"; sourceTree = "<group>"; };
+		CCF367672982E9FB00A3C65A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 		113338E52982AAD600026925 /* RaM */ = {
 			isa = PBXGroup;
 			children = (
+				CCF367672982E9FB00A3C65A /* Info.plist */,
 				113339342982C2C200026925 /* Extension */,
 				1133391C2982B3AC00026925 /* Utilities */,
 				113339212982B4AF00026925 /* Model */,
@@ -553,7 +555,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RaM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = RaM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -581,7 +583,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RaM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = RaM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
