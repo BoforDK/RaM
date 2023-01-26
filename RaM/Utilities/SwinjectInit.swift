@@ -21,5 +21,10 @@ final class SwinjectInit {
             return SearchHandler(apiHandler: apiHandler)
         }
         .inObjectScope(.container)
+
+        Container.shared.register(FavoriteHandler.self, name: .favoriteHandler) { _ in
+            return FavoriteHandler(favoriteRepository: FavoriteRepository(), apiHandler: apiHandler)
+        }
+        .inObjectScope(.container)
     }
 }
