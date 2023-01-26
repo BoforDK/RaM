@@ -25,5 +25,6 @@ extension Container {
 
     enum ClassName: String {
         case characterListHandler
+        case searchHandler
     }
 }

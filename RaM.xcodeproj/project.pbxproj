@@ -33,6 +33,11 @@
 		113339412982C75000026925 /* SwinjectInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339402982C75000026925 /* SwinjectInit.swift */; };
 		113339432982C77600026925 /* Container+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339422982C77600026925 /* Container+.swift */; };
 		1133394B2982C86400026925 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 1133394A2982C86400026925 /* Swinject */; };
+		CCF3676A2982EB3200A3C65A /* SearchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367692982EB3200A3C65A /* SearchableView.swift */; };
+		CCF3676D2982EBA200A3C65A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3676C2982EBA200A3C65A /* SearchView.swift */; };
+		CCF3676F2982EBCB00A3C65A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3676E2982EBCB00A3C65A /* SearchViewModel.swift */; };
+		CCF367712982EBF000A3C65A /* SearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367702982EBF000A3C65A /* SearchHandler.swift */; };
+		CCF367732982ED6D00A3C65A /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367722982ED6D00A3C65A /* CharactersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +87,11 @@
 		113339402982C75000026925 /* SwinjectInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectInit.swift; sourceTree = "<group>"; };
 		113339422982C77600026925 /* Container+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+.swift"; sourceTree = "<group>"; };
 		CCF367672982E9FB00A3C65A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CCF367692982EB3200A3C65A /* SearchableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableView.swift; sourceTree = "<group>"; };
+		CCF3676C2982EBA200A3C65A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		CCF3676E2982EBCB00A3C65A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		CCF367702982EBF000A3C65A /* SearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHandler.swift; sourceTree = "<group>"; };
+		CCF367722982ED6D00A3C65A /* CharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +142,7 @@
 		113338E52982AAD600026925 /* RaM */ = {
 			isa = PBXGroup;
 			children = (
+				CCF367682982EB1500A3C65A /* Components */,
 				CCF367672982E9FB00A3C65A /* Info.plist */,
 				113339342982C2C200026925 /* Extension */,
 				1133391C2982B3AC00026925 /* Utilities */,
@@ -165,10 +176,12 @@
 		113339162982B22100026925 /* VVM */ = {
 			isa = PBXGroup;
 			children = (
+				CCF3676B2982EB8000A3C65A /* Search */,
 				1133391A2982B39D00026925 /* CharacterListView.swift */,
 				113339192982B33A00026925 /* AllCharacters */,
 				113339322982C2A900026925 /* CharacterItemView.swift */,
 				1133393B2982C3A600026925 /* CharacterView.swift */,
+				CCF367722982ED6D00A3C65A /* CharactersView.swift */,
 			);
 			path = VVM;
 			sourceTree = "<group>";
@@ -191,6 +204,7 @@
 				1133392E2982B6DB00026925 /* CharacterListHandler.swift */,
 				113339392982C31100026925 /* DefaultVariables.swift */,
 				113339402982C75000026925 /* SwinjectInit.swift */,
+				CCF367702982EBF000A3C65A /* SearchHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -215,6 +229,23 @@
 				113339422982C77600026925 /* Container+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CCF367682982EB1500A3C65A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CCF367692982EB3200A3C65A /* SearchableView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CCF3676B2982EB8000A3C65A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CCF3676C2982EBA200A3C65A /* SearchView.swift */,
+				CCF3676E2982EBCB00A3C65A /* SearchViewModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,21 +410,26 @@
 				113339202982B49500026925 /* APIHandler.swift in Sources */,
 				1133393C2982C3A600026925 /* CharacterView.swift in Sources */,
 				1133392B2982B50600026925 /* Status.swift in Sources */,
+				CCF3676D2982EBA200A3C65A /* SearchView.swift in Sources */,
 				113339292982B4FE00026925 /* Location.swift in Sources */,
 				113339362982C2CE00026925 /* Color+.swift in Sources */,
 				1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */,
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
 				113338E92982AAD600026925 /* ContentView.swift in Sources */,
+				CCF3676A2982EB3200A3C65A /* SearchableView.swift in Sources */,
 				113339432982C77600026925 /* Container+.swift in Sources */,
 				1133391B2982B39D00026925 /* CharacterListView.swift in Sources */,
 				1133393A2982C31100026925 /* DefaultVariables.swift in Sources */,
+				CCF367732982ED6D00A3C65A /* CharactersView.swift in Sources */,
 				113339412982C75000026925 /* SwinjectInit.swift in Sources */,
 				113339232982B4C300026925 /* CharactersPage.swift in Sources */,
 				113339332982C2A900026925 /* CharacterItemView.swift in Sources */,
 				113339252982B4E900026925 /* PageInfo.swift in Sources */,
+				CCF367712982EBF000A3C65A /* SearchHandler.swift in Sources */,
 				113338E72982AAD600026925 /* RaMApp.swift in Sources */,
 				113339382982C2F200026925 /* Image+.swift in Sources */,
 				113339272982B4F600026925 /* Character.swift in Sources */,
+				CCF3676F2982EBCB00A3C65A /* SearchViewModel.swift in Sources */,
 				1133391E2982B3D100026925 /* NetworkAPI.swift in Sources */,
 				113339312982B8FB00026925 /* AllCharactersView.swift in Sources */,
 				113339182982B32D00026925 /* CharacterListViewModel.swift in Sources */,
