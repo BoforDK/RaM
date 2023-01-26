@@ -22,6 +22,7 @@
 		113339272982B4F600026925 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339262982B4F600026925 /* Character.swift */; };
 		113339292982B4FE00026925 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339282982B4FE00026925 /* Location.swift */; };
 		1133392B2982B50600026925 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392A2982B50600026925 /* Status.swift */; };
+		1133392D2982B63000026925 /* LinkSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392C2982B63000026925 /* LinkSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		113339262982B4F600026925 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		113339282982B4FE00026925 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1133392A2982B50600026925 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		1133392C2982B63000026925 /* LinkSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		113338E52982AAD600026925 /* RaM */ = {
 			isa = PBXGroup;
 			children = (
+				1133391C2982B3AC00026925 /* Utilities */,
 				113339212982B4AF00026925 /* Model */,
 				113339162982B22100026925 /* VVM */,
 				113338E62982AAD600026925 /* RaMApp.swift */,
@@ -139,7 +142,6 @@
 		113339162982B22100026925 /* VVM */ = {
 			isa = PBXGroup;
 			children = (
-				1133391C2982B3AC00026925 /* Utilities */,
 				113339192982B33A00026925 /* CharacterList */,
 			);
 			path = VVM;
@@ -159,6 +161,7 @@
 			children = (
 				1133391D2982B3D100026925 /* NetworkAPI.swift */,
 				1133391F2982B49500026925 /* APIHandler.swift */,
+				1133392C2982B63000026925 /* LinkSource.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1133392D2982B63000026925 /* LinkSource.swift in Sources */,
 				113339202982B49500026925 /* APIHandler.swift in Sources */,
 				1133392B2982B50600026925 /* Status.swift in Sources */,
 				113339292982B4FE00026925 /* Location.swift in Sources */,
