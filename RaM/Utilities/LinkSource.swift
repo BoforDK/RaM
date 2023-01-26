@@ -14,5 +14,4 @@ struct LinkSource {
     static let filter = "https://rickandmortyapi.com/api/character"
     static let characters = "https://rickandmortyapi.com/api/character"
     static let filterByName = "name"
-    
 }
