@@ -46,6 +46,8 @@
 		CCF367802982F1E100A3C65A /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3677F2982F1E100A3C65A /* FavoriteViewModel.swift */; };
 		CCF367822982F1E800A3C65A /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367812982F1E800A3C65A /* FavoriteView.swift */; };
 		CCF367842982F8B600A3C65A /* OffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367832982F8B600A3C65A /* OffsetModifier.swift */; };
+		CCF367872982FCF600A3C65A /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367862982FCF600A3C65A /* Stub.swift */; };
+		CCF367892982FD0F00A3C65A /* MockSearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367882982FD0F00A3C65A /* MockSearchHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		CCF3677F2982F1E100A3C65A /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		CCF367812982F1E800A3C65A /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		CCF367832982F8B600A3C65A /* OffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetModifier.swift; sourceTree = "<group>"; };
+		CCF367862982FCF600A3C65A /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		CCF367882982FD0F00A3C65A /* MockSearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,7 @@
 		113338FB2982AAD700026925 /* RaMTests */ = {
 			isa = PBXGroup;
 			children = (
+				CCF367852982FCE600A3C65A /* Mock */,
 				113338FC2982AAD700026925 /* RaMTests.swift */,
 			);
 			path = RaMTests;
@@ -278,6 +283,15 @@
 				CCF3677F2982F1E100A3C65A /* FavoriteViewModel.swift */,
 			);
 			path = Favorite;
+			sourceTree = "<group>";
+		};
+		CCF367852982FCE600A3C65A /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				CCF367862982FCF600A3C65A /* Stub.swift */,
+				CCF367882982FD0F00A3C65A /* MockSearchHandler.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,7 +494,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF367892982FD0F00A3C65A /* MockSearchHandler.swift in Sources */,
 				113338FD2982AAD700026925 /* RaMTests.swift in Sources */,
+				CCF367872982FCF600A3C65A /* Stub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
