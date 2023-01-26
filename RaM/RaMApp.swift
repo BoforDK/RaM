@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct RaMApp: App {
-
     init() {
         SwinjectInit.initConteiner()
     }
