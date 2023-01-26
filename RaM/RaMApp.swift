@@ -10,6 +10,10 @@ import SwiftUI
 @main
 struct RaMApp: App {
 
+    init() {
+        SwinjectInit.initConteiner()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

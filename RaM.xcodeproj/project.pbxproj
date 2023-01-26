@@ -30,7 +30,9 @@
 		113339382982C2F200026925 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339372982C2F200026925 /* Image+.swift */; };
 		1133393A2982C31100026925 /* DefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339392982C31100026925 /* DefaultVariables.swift */; };
 		1133393C2982C3A600026925 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133393B2982C3A600026925 /* CharacterView.swift */; };
-		1133393F2982C5CD00026925 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 1133393E2982C5CD00026925 /* Swinject */; };
+		113339412982C75000026925 /* SwinjectInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339402982C75000026925 /* SwinjectInit.swift */; };
+		113339432982C77600026925 /* Container+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339422982C77600026925 /* Container+.swift */; };
+		1133394B2982C86400026925 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 1133394A2982C86400026925 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		113339372982C2F200026925 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		113339392982C31100026925 /* DefaultVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVariables.swift; sourceTree = "<group>"; };
 		1133393B2982C3A600026925 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		113339402982C75000026925 /* SwinjectInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectInit.swift; sourceTree = "<group>"; };
+		113339422982C77600026925 /* Container+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1133393F2982C5CD00026925 /* Swinject in Frameworks */,
+				1133394B2982C86400026925 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +188,7 @@
 				1133392C2982B63000026925 /* LinkSource.swift */,
 				1133392E2982B6DB00026925 /* CharacterListHandler.swift */,
 				113339392982C31100026925 /* DefaultVariables.swift */,
+				113339402982C75000026925 /* SwinjectInit.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			children = (
 				113339352982C2CE00026925 /* Color+.swift */,
 				113339372982C2F200026925 /* Image+.swift */,
+				113339422982C77600026925 /* Container+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -227,7 +233,7 @@
 			);
 			name = RaM;
 			packageProductDependencies = (
-				1133393E2982C5CD00026925 /* Swinject */,
+				1133394A2982C86400026925 /* Swinject */,
 			);
 			productName = RaM;
 			productReference = 113338E32982AAD600026925 /* RaM.app */;
@@ -302,7 +308,7 @@
 			);
 			mainGroup = 113338DA2982AAD600026925;
 			packageReferences = (
-				1133393D2982C5CD00026925 /* XCRemoteSwiftPackageReference "Swinject" */,
+				113339492982C86400026925 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 113338E42982AAD600026925 /* Products */;
 			projectDirPath = "";
@@ -376,8 +382,10 @@
 				1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */,
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
 				113338E92982AAD600026925 /* ContentView.swift in Sources */,
+				113339432982C77600026925 /* Container+.swift in Sources */,
 				1133391B2982B39D00026925 /* CharacterListView.swift in Sources */,
 				1133393A2982C31100026925 /* DefaultVariables.swift in Sources */,
+				113339412982C75000026925 /* SwinjectInit.swift in Sources */,
 				113339232982B4C300026925 /* CharactersPage.swift in Sources */,
 				113339332982C2A900026925 /* CharacterItemView.swift in Sources */,
 				113339252982B4E900026925 /* PageInfo.swift in Sources */,
@@ -705,7 +713,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1133393D2982C5CD00026925 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+		113339492982C86400026925 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
 			requirement = {
@@ -716,9 +724,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1133393E2982C5CD00026925 /* Swinject */ = {
+		1133394A2982C86400026925 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1133393D2982C5CD00026925 /* XCRemoteSwiftPackageReference "Swinject" */;
+			package = 113339492982C86400026925 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
