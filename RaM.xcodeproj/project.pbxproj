@@ -11,11 +11,8 @@
 		113338E92982AAD600026925 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113338E82982AAD600026925 /* ContentView.swift */; };
 		113338EB2982AAD700026925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113338EA2982AAD700026925 /* Assets.xcassets */; };
 		113338EE2982AAD700026925 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113338ED2982AAD700026925 /* Preview Assets.xcassets */; };
-		113338F02982AAD700026925 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113338EF2982AAD700026925 /* Persistence.swift */; };
 		113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 113338F12982AAD700026925 /* RaM.xcdatamodeld */; };
 		113338FD2982AAD700026925 /* RaMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113338FC2982AAD700026925 /* RaMTests.swift */; };
-		113339072982AAD700026925 /* RaMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339062982AAD700026925 /* RaMUITests.swift */; };
-		113339092982AAD700026925 /* RaMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339082982AAD700026925 /* RaMUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +38,10 @@
 		113338E82982AAD600026925 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		113338EA2982AAD700026925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		113338ED2982AAD700026925 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		113338EF2982AAD700026925 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		113338F22982AAD700026925 /* RaM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RaM.xcdatamodel; sourceTree = "<group>"; };
 		113338F82982AAD700026925 /* RaMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		113338FC2982AAD700026925 /* RaMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaMTests.swift; sourceTree = "<group>"; };
 		113339022982AAD700026925 /* RaMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		113339062982AAD700026925 /* RaMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaMUITests.swift; sourceTree = "<group>"; };
-		113339082982AAD700026925 /* RaMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +74,6 @@
 			children = (
 				113338E52982AAD600026925 /* RaM */,
 				113338FB2982AAD700026925 /* RaMTests */,
-				113339052982AAD700026925 /* RaMUITests */,
 				113338E42982AAD600026925 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,7 +94,6 @@
 				113338E62982AAD600026925 /* RaMApp.swift */,
 				113338E82982AAD600026925 /* ContentView.swift */,
 				113338EA2982AAD700026925 /* Assets.xcassets */,
-				113338EF2982AAD700026925 /* Persistence.swift */,
 				113338F12982AAD700026925 /* RaM.xcdatamodeld */,
 				113338EC2982AAD700026925 /* Preview Content */,
 			);
@@ -124,15 +116,6 @@
 			path = RaMTests;
 			sourceTree = "<group>";
 		};
-		113339052982AAD700026925 /* RaMUITests */ = {
-			isa = PBXGroup;
-			children = (
-				113339062982AAD700026925 /* RaMUITests.swift */,
-				113339082982AAD700026925 /* RaMUITestsLaunchTests.swift */,
-			);
-			path = RaMUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +126,7 @@
 				113338DF2982AAD600026925 /* Sources */,
 				113338E02982AAD600026925 /* Frameworks */,
 				113338E12982AAD600026925 /* Resources */,
+				113339152982AD1000026925 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -258,13 +242,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		113339152982AD1000026925 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		113338DF2982AAD600026925 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
-				113338F02982AAD700026925 /* Persistence.swift in Sources */,
 				113338E92982AAD600026925 /* ContentView.swift in Sources */,
 				113338E72982AAD600026925 /* RaMApp.swift in Sources */,
 			);
@@ -282,8 +286,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				113339072982AAD700026925 /* RaMUITests.swift in Sources */,
-				113339092982AAD700026925 /* RaMUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
