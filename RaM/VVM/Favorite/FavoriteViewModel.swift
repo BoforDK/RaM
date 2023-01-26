@@ -15,7 +15,7 @@ final class FavoriteViewModel: ObservableObject {
     private let favoriteRepository: FavoriteHandlerProtocol
 
     convenience init() {
-        guard let favoriteRepository = Container.shared.resolve(FavoriteHandler.self,
+        guard let favoriteRepository = Container.shared.resolve(FavoriteHandlerProtocol.self,
                                                                 name: .favoriteHandler) else {
             fatalError("CharacterListHandler has to be init in SwinjectInit")
         }

@@ -13,7 +13,8 @@ struct FavoriteView: View {
     @ObservedObject var vm = FavoriteViewModel()
 
     var body: some View {
-        CharacterListView(characters: vm.characters)
+        CharacterListView(characters: vm.characters,
+                          favoriteIds: vm.characters.map {$0.id})
     }
 }
 

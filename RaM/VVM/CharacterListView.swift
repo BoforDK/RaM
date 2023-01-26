@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CharacterListView: View {
     var characters: [Character] = []
+    var favoriteIds: [Int] = []
     var lastElementAction: (() -> Void)?
 
     var body: some View {
@@ -40,7 +41,8 @@ struct CharacterListView: View {
     }
 
     func characterLabel(character: Character) -> some View {
-        CharacterItemView(character: character, isFavorite: false)
+        CharacterItemView(character: character,
+                          isFavorite: favoriteIds.contains(character.id))
             .padding(10)
             .background(Color.listItem)
             .cornerRadius(15)

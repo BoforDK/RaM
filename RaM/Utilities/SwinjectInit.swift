@@ -22,7 +22,7 @@ final class SwinjectInit {
         }
         .inObjectScope(.container)
 
-        Container.shared.register(FavoriteHandler.self, name: .favoriteHandler) { _ in
+        Container.shared.register(FavoriteHandlerProtocol.self, name: .favoriteHandler) { _ in
             return FavoriteHandler(favoriteRepository: FavoriteRepository(), apiHandler: apiHandler)
         }
         .inObjectScope(.container)
