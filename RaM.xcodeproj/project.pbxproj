@@ -30,6 +30,9 @@
 		113339382982C2F200026925 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339372982C2F200026925 /* Image+.swift */; };
 		1133393A2982C31100026925 /* DefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339392982C31100026925 /* DefaultVariables.swift */; };
 		1133393C2982C3A600026925 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133393B2982C3A600026925 /* CharacterView.swift */; };
+		113339412982C75000026925 /* SwinjectInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339402982C75000026925 /* SwinjectInit.swift */; };
+		113339432982C77600026925 /* Container+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339422982C77600026925 /* Container+.swift */; };
+		1133394B2982C86400026925 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 1133394A2982C86400026925 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,9 @@
 		113339372982C2F200026925 /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		113339392982C31100026925 /* DefaultVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVariables.swift; sourceTree = "<group>"; };
 		1133393B2982C3A600026925 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		113339402982C75000026925 /* SwinjectInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectInit.swift; sourceTree = "<group>"; };
+		113339422982C77600026925 /* Container+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+.swift"; sourceTree = "<group>"; };
+		CCF367672982E9FB00A3C65A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1133394B2982C86400026925 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +132,7 @@
 		113338E52982AAD600026925 /* RaM */ = {
 			isa = PBXGroup;
 			children = (
+				CCF367672982E9FB00A3C65A /* Info.plist */,
 				113339342982C2C200026925 /* Extension */,
 				1133391C2982B3AC00026925 /* Utilities */,
 				113339212982B4AF00026925 /* Model */,
@@ -182,6 +190,7 @@
 				1133392C2982B63000026925 /* LinkSource.swift */,
 				1133392E2982B6DB00026925 /* CharacterListHandler.swift */,
 				113339392982C31100026925 /* DefaultVariables.swift */,
+				113339402982C75000026925 /* SwinjectInit.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -203,6 +212,7 @@
 			children = (
 				113339352982C2CE00026925 /* Color+.swift */,
 				113339372982C2F200026925 /* Image+.swift */,
+				113339422982C77600026925 /* Container+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -224,6 +234,9 @@
 			dependencies = (
 			);
 			name = RaM;
+			packageProductDependencies = (
+				1133394A2982C86400026925 /* Swinject */,
+			);
 			productName = RaM;
 			productReference = 113338E32982AAD600026925 /* RaM.app */;
 			productType = "com.apple.product-type.application";
@@ -296,6 +309,9 @@
 				Base,
 			);
 			mainGroup = 113338DA2982AAD600026925;
+			packageReferences = (
+				113339492982C86400026925 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 113338E42982AAD600026925 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -368,8 +384,10 @@
 				1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */,
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
 				113338E92982AAD600026925 /* ContentView.swift in Sources */,
+				113339432982C77600026925 /* Container+.swift in Sources */,
 				1133391B2982B39D00026925 /* CharacterListView.swift in Sources */,
 				1133393A2982C31100026925 /* DefaultVariables.swift in Sources */,
+				113339412982C75000026925 /* SwinjectInit.swift in Sources */,
 				113339232982B4C300026925 /* CharactersPage.swift in Sources */,
 				113339332982C2A900026925 /* CharacterItemView.swift in Sources */,
 				113339252982B4E900026925 /* PageInfo.swift in Sources */,
@@ -537,7 +555,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RaM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = RaM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -565,7 +583,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RaM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = RaM/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -695,6 +713,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		113339492982C86400026925 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1133394A2982C86400026925 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 113339492982C86400026925 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		113338F12982AAD700026925 /* RaM.xcdatamodeld */ = {

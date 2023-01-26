@@ -11,7 +11,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            AllCharactersView(vm: .init(characterListHandler: CharacterListHandler(apiHandler: APIHandler(networkAPI: NetworkAPI()))))
+            AllCharactersView()
         }
     }
 }

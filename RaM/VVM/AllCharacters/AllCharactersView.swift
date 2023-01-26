@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AllCharactersView: View {
-    @StateObject var vm: AllCharactersViewModel
+    @StateObject var vm = AllCharactersViewModel()
 
     var body: some View {
         CharacterListView(characters: vm.characters,
