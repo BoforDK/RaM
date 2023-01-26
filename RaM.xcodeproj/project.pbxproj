@@ -23,6 +23,7 @@
 		113339292982B4FE00026925 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339282982B4FE00026925 /* Location.swift */; };
 		1133392B2982B50600026925 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392A2982B50600026925 /* Status.swift */; };
 		1133392D2982B63000026925 /* LinkSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392C2982B63000026925 /* LinkSource.swift */; };
+		1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392E2982B6DB00026925 /* CharacterListHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		113339282982B4FE00026925 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1133392A2982B50600026925 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		1133392C2982B63000026925 /* LinkSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkSource.swift; sourceTree = "<group>"; };
+		1133392E2982B6DB00026925 /* CharacterListHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				1133391D2982B3D100026925 /* NetworkAPI.swift */,
 				1133391F2982B49500026925 /* APIHandler.swift */,
 				1133392C2982B63000026925 /* LinkSource.swift */,
+				1133392E2982B6DB00026925 /* CharacterListHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				113339202982B49500026925 /* APIHandler.swift in Sources */,
 				1133392B2982B50600026925 /* Status.swift in Sources */,
 				113339292982B4FE00026925 /* Location.swift in Sources */,
+				1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */,
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
 				113338E92982AAD600026925 /* ContentView.swift in Sources */,
 				1133391B2982B39D00026925 /* CharacterListView.swift in Sources */,
