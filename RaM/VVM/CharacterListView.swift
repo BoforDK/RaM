@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct CharacterListView: View {
+    @Environment(\.showTabBar) private var showTabBar
     var characters: [Character] = []
     var favoriteIds: [Int] = []
     var lastElementAction: (() -> Void)?
+    @State var offset: CGFloat = 0.0
+    @State var oldOffset: CGFloat = 0.0
+    @State var lastElementIsVisible = true
+    private let coordinateSpaceName = "SCROLL"
 
     var body: some View {
         ScrollView {
@@ -21,6 +26,12 @@ struct CharacterListView: View {
                     .opacity(lastElementAction == nil ? 0 : 1)
             }
             .frame(maxWidth: .infinity)
+            .modifier(OffsetModifier(offset: $offset,
+                                     coordinateSpaceName: coordinateSpaceName))
+            .onChange(of: offset, perform: calculateShowingTabBar)
+            .onAppear {
+                showTabBar(true)
+            }
         }
     }
 
@@ -55,7 +66,18 @@ struct CharacterListView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             .onAppear {
                 lastElementAction?()
+                if characters.count != 0 && lastElementAction != nil {
+                    lastElementIsVisible = false
+                }
             }
+            .onDisappear {
+                lastElementIsVisible = true
+            }
+    }
+
+    func calculateShowingTabBar(offset: CGFloat) {
+        showTabBar((oldOffset < offset || offset > 0) && lastElementIsVisible)
+        oldOffset = offset
     }
 }
 

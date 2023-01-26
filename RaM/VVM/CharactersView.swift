@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CharactersView: View {
     @Environment(\.isSearching) private var isSearching
+    @Environment(\.showTabBar) private var showTabBar
     var searchText: String = ""
 
     var body: some View {
@@ -26,6 +27,12 @@ struct CharactersView: View {
     func searchContent(searchText: String) -> some View {
         SearchView(searchText: searchText)
             .background(Color.background)
+            .onAppear {
+                showTabBar(false)
+            }
+            .onDisappear {
+                showTabBar(true)
+            }
     }
 }
 

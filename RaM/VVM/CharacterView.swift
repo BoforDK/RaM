@@ -11,6 +11,7 @@ import Swinject
 struct CharacterView: View {
     var character: Character
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.showTabBar) private var showTabBar
     @State var isFavorite: Bool = false
     let favoriteHandler = Container.shared.resolve(FavoriteHandlerProtocol.self,
                                                    name: .favoriteHandler)
@@ -57,6 +58,7 @@ struct CharacterView: View {
 
     func toolBarButton() -> some View {
         Button(action: {
+            showTabBar(true)
             dismiss()
         }, label: {
             HStack {
@@ -149,6 +151,7 @@ struct CharacterView: View {
     }
 
     func onAppear() {
+        showTabBar(false)
         isFavorite = favoriteHandler?.contains(id: character.id) ?? false
     }
 }
