@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
+    @Environment(\.showTabBar) private var showTabBar
     @ObservedObject var vm: CharacterSearchViewModel
     @State var characters = [Character]()
     var searchText: String
@@ -33,6 +34,10 @@ struct SearchView: View {
                     })
                     .buttonStyle(.plain)
                 }
+                .onAppear {
+                    showTabBar(false)
+                }
+
                 ProgressView()
                     .frame(maxWidth: .infinity, alignment: .center)
                     .opacity(!searchText.isEmpty && !vm.lastPageWasLoaded ? 1 : 0)
