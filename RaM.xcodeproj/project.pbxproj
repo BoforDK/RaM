@@ -24,6 +24,7 @@
 		1133392B2982B50600026925 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392A2982B50600026925 /* Status.swift */; };
 		1133392D2982B63000026925 /* LinkSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392C2982B63000026925 /* LinkSource.swift */; };
 		1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133392E2982B6DB00026925 /* CharacterListHandler.swift */; };
+		113339312982B8FB00026925 /* AllCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339302982B8FB00026925 /* AllCharactersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +54,7 @@
 		113338F82982AAD700026925 /* RaMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		113338FC2982AAD700026925 /* RaMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaMTests.swift; sourceTree = "<group>"; };
 		113339022982AAD700026925 /* RaMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		113339172982B32D00026925 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterListViewModel.swift; path = RaM/VVM/CharacterList/CharacterListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		113339172982B32D00026925 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterListViewModel.swift; path = RaM/VVM/AllCharacters/CharacterListViewModel.swift; sourceTree = SOURCE_ROOT; };
 		1133391A2982B39D00026925 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		1133391D2982B3D100026925 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		1133391F2982B49500026925 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		1133392A2982B50600026925 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		1133392C2982B63000026925 /* LinkSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkSource.swift; sourceTree = "<group>"; };
 		1133392E2982B6DB00026925 /* CharacterListHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListHandler.swift; sourceTree = "<group>"; };
+		113339302982B8FB00026925 /* AllCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,18 +146,19 @@
 		113339162982B22100026925 /* VVM */ = {
 			isa = PBXGroup;
 			children = (
-				113339192982B33A00026925 /* CharacterList */,
+				1133391A2982B39D00026925 /* CharacterListView.swift */,
+				113339192982B33A00026925 /* AllCharacters */,
 			);
 			path = VVM;
 			sourceTree = "<group>";
 		};
-		113339192982B33A00026925 /* CharacterList */ = {
+		113339192982B33A00026925 /* AllCharacters */ = {
 			isa = PBXGroup;
 			children = (
 				113339172982B32D00026925 /* CharacterListViewModel.swift */,
-				1133391A2982B39D00026925 /* CharacterListView.swift */,
+				113339302982B8FB00026925 /* AllCharactersView.swift */,
 			);
-			path = CharacterList;
+			path = AllCharacters;
 			sourceTree = "<group>";
 		};
 		1133391C2982B3AC00026925 /* Utilities */ = {
@@ -346,6 +349,7 @@
 				113338E72982AAD600026925 /* RaMApp.swift in Sources */,
 				113339272982B4F600026925 /* Character.swift in Sources */,
 				1133391E2982B3D100026925 /* NetworkAPI.swift in Sources */,
+				113339312982B8FB00026925 /* AllCharactersView.swift in Sources */,
 				113339182982B32D00026925 /* CharacterListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

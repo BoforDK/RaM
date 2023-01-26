@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
 
     var body: some View {
-        Text("Hello world")
+        AllCharactersView(vm: .init(characterListHandler: CharacterListHandler(apiHandler: APIHandler(networkAPI: NetworkAPI()))))
     }
 }
 
