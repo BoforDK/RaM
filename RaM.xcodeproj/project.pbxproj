@@ -13,6 +13,9 @@
 		113338EE2982AAD700026925 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113338ED2982AAD700026925 /* Preview Assets.xcassets */; };
 		113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 113338F12982AAD700026925 /* RaM.xcdatamodeld */; };
 		113338FD2982AAD700026925 /* RaMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113338FC2982AAD700026925 /* RaMTests.swift */; };
+		113339182982B32D00026925 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339172982B32D00026925 /* CharacterListViewModel.swift */; };
+		1133391B2982B39D00026925 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133391A2982B39D00026925 /* CharacterListView.swift */; };
+		1133391E2982B3D100026925 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133391D2982B3D100026925 /* NetworkAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		113338F82982AAD700026925 /* RaMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		113338FC2982AAD700026925 /* RaMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaMTests.swift; sourceTree = "<group>"; };
 		113339022982AAD700026925 /* RaMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		113339172982B32D00026925 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterListViewModel.swift; path = RaM/VVM/CharacterList/CharacterListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		1133391A2982B39D00026925 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		1133391D2982B3D100026925 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,7 @@
 		113338E52982AAD600026925 /* RaM */ = {
 			isa = PBXGroup;
 			children = (
+				113339162982B22100026925 /* VVM */,
 				113338E62982AAD600026925 /* RaMApp.swift */,
 				113338E82982AAD600026925 /* ContentView.swift */,
 				113338EA2982AAD700026925 /* Assets.xcassets */,
@@ -114,6 +121,32 @@
 				113338FC2982AAD700026925 /* RaMTests.swift */,
 			);
 			path = RaMTests;
+			sourceTree = "<group>";
+		};
+		113339162982B22100026925 /* VVM */ = {
+			isa = PBXGroup;
+			children = (
+				1133391C2982B3AC00026925 /* Utilities */,
+				113339192982B33A00026925 /* CharacterList */,
+			);
+			path = VVM;
+			sourceTree = "<group>";
+		};
+		113339192982B33A00026925 /* CharacterList */ = {
+			isa = PBXGroup;
+			children = (
+				113339172982B32D00026925 /* CharacterListViewModel.swift */,
+				1133391A2982B39D00026925 /* CharacterListView.swift */,
+			);
+			path = CharacterList;
+			sourceTree = "<group>";
+		};
+		1133391C2982B3AC00026925 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1133391D2982B3D100026925 /* NetworkAPI.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +303,10 @@
 			files = (
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
 				113338E92982AAD600026925 /* ContentView.swift in Sources */,
+				1133391B2982B39D00026925 /* CharacterListView.swift in Sources */,
 				113338E72982AAD600026925 /* RaMApp.swift in Sources */,
+				1133391E2982B3D100026925 /* NetworkAPI.swift in Sources */,
+				113339182982B32D00026925 /* CharacterListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
