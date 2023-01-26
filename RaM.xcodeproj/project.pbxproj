@@ -38,6 +38,8 @@
 		CCF3676F2982EBCB00A3C65A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3676E2982EBCB00A3C65A /* SearchViewModel.swift */; };
 		CCF367712982EBF000A3C65A /* SearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367702982EBF000A3C65A /* SearchHandler.swift */; };
 		CCF367732982ED6D00A3C65A /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367722982ED6D00A3C65A /* CharactersView.swift */; };
+		CCF367752982EF8800A3C65A /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367742982EF8800A3C65A /* CustomTabView.swift */; };
+		CCF367772982EFB900A3C65A /* EnvironmentValues+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF367762982EFB900A3C65A /* EnvironmentValues+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		CCF3676E2982EBCB00A3C65A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CCF367702982EBF000A3C65A /* SearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHandler.swift; sourceTree = "<group>"; };
 		CCF367722982ED6D00A3C65A /* CharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
+		CCF367742982EF8800A3C65A /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		CCF367762982EFB900A3C65A /* EnvironmentValues+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,7 @@
 				113339352982C2CE00026925 /* Color+.swift */,
 				113339372982C2F200026925 /* Image+.swift */,
 				113339422982C77600026925 /* Container+.swift */,
+				CCF367762982EFB900A3C65A /* EnvironmentValues+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				CCF367692982EB3200A3C65A /* SearchableView.swift */,
+				CCF367742982EF8800A3C65A /* CustomTabView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 				1133392B2982B50600026925 /* Status.swift in Sources */,
 				CCF3676D2982EBA200A3C65A /* SearchView.swift in Sources */,
 				113339292982B4FE00026925 /* Location.swift in Sources */,
+				CCF367772982EFB900A3C65A /* EnvironmentValues+.swift in Sources */,
 				113339362982C2CE00026925 /* Color+.swift in Sources */,
 				1133392F2982B6DB00026925 /* CharacterListHandler.swift in Sources */,
 				113338F32982AAD700026925 /* RaM.xcdatamodeld in Sources */,
@@ -433,6 +440,7 @@
 				1133391E2982B3D100026925 /* NetworkAPI.swift in Sources */,
 				113339312982B8FB00026925 /* AllCharactersView.swift in Sources */,
 				113339182982B32D00026925 /* CharacterListViewModel.swift in Sources */,
+				CCF367752982EF8800A3C65A /* CustomTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
