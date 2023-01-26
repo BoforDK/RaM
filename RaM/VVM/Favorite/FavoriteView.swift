@@ -13,10 +13,7 @@ struct FavoriteView: View {
     @ObservedObject var vm = FavoriteViewModel()
 
     var body: some View {
-        NavigationView {
-            CharacterListView(characters: vm.characters)
-            .navigationTitle("Favorites")
-        }
+        CharacterListView(characters: vm.characters)
     }
 }
 

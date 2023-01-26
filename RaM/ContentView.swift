@@ -10,10 +10,26 @@ import SwiftUI
 struct ContentView: View {
 
     var body: some View {
-        NavigationView {
-            CharactersView()
-                .navigationTitle("Characters")
-        }
+        CustomTabView(content: {
+            NavigationView {
+                CharactersView()
+                    .navigationTitle("Characters")
+            }
+
+            NavigationView {
+                FavoriteView()
+                    .navigationTitle("Favorites")
+            }
+        }, tabBar: {
+            Image.placeholder
+                .resizable()
+                .renderingMode(.template)
+                .scaledToFit()
+            Image.favorite
+                .resizable()
+                .renderingMode(.template)
+                .scaledToFit()
+        })
     }
 }
 
