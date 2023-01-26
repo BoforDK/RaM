@@ -30,6 +30,7 @@
 		113339382982C2F200026925 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339372982C2F200026925 /* Image+.swift */; };
 		1133393A2982C31100026925 /* DefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113339392982C31100026925 /* DefaultVariables.swift */; };
 		1133393C2982C3A600026925 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133393B2982C3A600026925 /* CharacterView.swift */; };
+		1133393F2982C5CD00026925 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 1133393E2982C5CD00026925 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1133393F2982C5CD00026925 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +226,9 @@
 			dependencies = (
 			);
 			name = RaM;
+			packageProductDependencies = (
+				1133393E2982C5CD00026925 /* Swinject */,
+			);
 			productName = RaM;
 			productReference = 113338E32982AAD600026925 /* RaM.app */;
 			productType = "com.apple.product-type.application";
@@ -296,6 +301,9 @@
 				Base,
 			);
 			mainGroup = 113338DA2982AAD600026925;
+			packageReferences = (
+				1133393D2982C5CD00026925 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 113338E42982AAD600026925 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -695,6 +703,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1133393D2982C5CD00026925 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1133393E2982C5CD00026925 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1133393D2982C5CD00026925 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		113338F12982AAD700026925 /* RaM.xcdatamodeld */ = {
