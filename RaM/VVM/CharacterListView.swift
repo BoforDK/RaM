@@ -25,13 +25,26 @@ struct CharacterListView: View {
 
     func characterList() -> some View {
         ForEach(characters, id: \.id) { character in
-            Text(character.origin.name)
+            NavigationLink(destination: {
+                CharacterView(character: character)
+            }, label: {
+                characterLabel(character: character)
+            })
+            .buttonStyle(.plain)
             .onAppear {
                 if characters.last?.id == character.id {
                     lastElementAction?()
                 }
             }
         }
+    }
+
+    func characterLabel(character: Character) -> some View {
+        CharacterItemView(character: character, isFavorite: false)
+            .padding(10)
+            .background(Color.listItem)
+            .cornerRadius(15)
+            .padding([.horizontal], 15)
     }
 
     @ViewBuilder
