@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct CharacterView: View {
     var character: Character
     @Environment(\.dismiss) private var dismiss
     @State var isFavorite: Bool = false
+    let favoriteHandler = Container.shared.resolve(FavoriteHandlerProtocol.self,
+                                                   name: .favoriteHandler)
     let navigationImageSize: CGFloat = 60
     let navigationImageName = "chevron.left"
     let gridSpacing: CGFloat = 10
@@ -49,6 +52,7 @@ struct CharacterView: View {
             }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear(perform: onAppear)
     }
 
     func toolBarButton() -> some View {
@@ -132,5 +136,19 @@ struct CharacterView: View {
     }
 
     func toggleFavoriteState() {
+        guard let strongFavoriteHandler = favoriteHandler else {
+            return
+        }
+        if strongFavoriteHandler.contains(id: character.id) {
+            strongFavoriteHandler.delete(id: character.id)
+            isFavorite = false
+        } else {
+            strongFavoriteHandler.add(id: character.id)
+            isFavorite = true
+        }
+    }
+
+    func onAppear() {
+        isFavorite = favoriteHandler?.contains(id: character.id) ?? false
     }
 }

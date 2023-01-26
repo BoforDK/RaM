@@ -16,6 +16,7 @@ struct RaMApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .tint(.accent)
         }
     }
 }

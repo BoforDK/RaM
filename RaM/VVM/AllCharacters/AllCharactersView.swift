@@ -12,6 +12,7 @@ struct AllCharactersView: View {
 
     var body: some View {
         CharacterListView(characters: vm.characters,
+                          favoriteIds: vm.favoriteIds,
                           lastElementAction: vm.lastPageWasLoaded ? nil : vm.loadNext)
     }
 }
