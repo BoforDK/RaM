@@ -47,6 +47,7 @@ struct CharacterView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .background(Color.background)
+        .toolbar(removing: .sidebarToggle)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 toolBarButton()
