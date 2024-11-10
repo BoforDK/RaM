@@ -39,10 +39,7 @@ public let app: Target = .target(
     ],
     settings: .settings(
         base: [
-            //todo
-            "DEVELOPMENT_TEAM": .string(AppSetup.current.teamID),
-//            "CODE_SIGN_IDENTITY": .string("Apple development"),
-//            "PROVISIONING_PROFILE_SPECIFIER": .string(""),
+            "DEVELOPMENT_TEAM": .string(AppSetup.current.teamID)
         ],
         configurations: AppSetup.current.projectConfigurations
     )

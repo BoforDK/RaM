@@ -14,19 +14,18 @@ public struct AppSetup {
 
     public let environment: Environment
     public let configuration: Configuration
-    public let moduleBundleIDPrefix = "com.requester"
+    public let moduleBundleIDPrefix = "com.ram"
     
-    //todo: user real bundleID
     public var bundleID: String {
         switch (configuration, environment) {
         case (.debug, _):
-            "com.requester.debug"
+            moduleBundleIDPrefix + ".debug"
         case (.beta, .development):
-            "com.requester.dev"
+            moduleBundleIDPrefix + ".dev"
         case (.beta, .production):
             fatalError("Config: Beta, Environment: Production bundleID not configured")
         case (.release, .production):
-            "com.requester.prod"
+            moduleBundleIDPrefix + ".prod"
         case (.release, .development):
             fatalError("Config: Release, Environment: Production bundleID not configured")
         }
@@ -49,7 +48,6 @@ public struct AppSetup {
         }
     }
 
-    //todo: add teamID
     public var teamID: String {
         "YUZLMRGGBB"
     }
