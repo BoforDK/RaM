@@ -31,12 +31,17 @@ public struct AppSetup {
         }
     }
     
-    public var appNameValue: String {
+    public var appName: String {
+        let appName = "RaM"
+        
         if configuration == .release, environment == .production {
-            return ""
+            return appName
         }
 
-        return environment.appNameValue
+        return [
+            appName,
+            environment.appNameValue
+        ].joined(separator: " ")
     }
     
     public var projectConfigurations: [ProjectDescription.Configuration] {

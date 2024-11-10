@@ -9,16 +9,6 @@ import ProjectDescription
 
 private let targetName = "App"
 private let bundleID = AppSetup.current.bundleID
-private let appName: String = {
-    if Environment.current == .production, Configuration.current == .release {
-        return targetName
-    }
-
-    return [
-        targetName,
-        AppSetup.current.appNameValue
-    ].joined(separator: " ")
-}()
 
 public let app: Target = .target(
     name: targetName,
@@ -27,7 +17,7 @@ public let app: Target = .target(
     bundleId: bundleID,
     infoPlist: .extendingDefault(
         with: [
-            "CFBundleDisplayName": .string(appName),
+            "CFBundleDisplayName": .string(AppSetup.current.appName),
             "UILaunchScreen": .dictionary([:]),
         ]
     ),
