@@ -311,6 +311,8 @@
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+			);
 			productName = App;
 			productReference = 16B8D6E1D31B45121C890F02 /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -416,7 +418,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.requester.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ram.debug;
 				PRODUCT_NAME = App;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -555,7 +557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.requester.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ram.debug;
 				PRODUCT_NAME = App;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
