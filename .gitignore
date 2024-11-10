@@ -50,6 +50,8 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+*.xcodeproj
+*.xcworkspace
 
 ### Xcode Patch ###
 *.xcodeproj/*
