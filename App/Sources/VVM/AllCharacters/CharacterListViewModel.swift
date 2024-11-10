@@ -8,6 +8,7 @@
 import Foundation
 import Swinject
 import Combine
+import AppCore
 
 final class AllCharactersViewModel: ObservableObject {
     @Published var characters = [Character]()

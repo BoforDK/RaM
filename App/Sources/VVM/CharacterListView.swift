@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import AppCore
 
 struct CharacterListView: View {
     @Environment(\.showTabBar) private var showTabBar
-    var characters: [Character] = []
+    var characters: [AppCore.Character] = []
     var favoriteIds: [Int] = []
     var lastElementAction: (() -> Void)?
     @State var offset: CGFloat = 0.0

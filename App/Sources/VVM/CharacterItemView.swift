@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppCore
 
 struct CharacterItemView: View {
     var character: Character

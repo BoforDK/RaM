@@ -25,7 +25,8 @@ public let app: Target = .target(
     resources: ["\(targetName)/Resources/**"],
     entitlements: "App/App.entitlements",
     dependencies: [
-        .external(name: "Swinject")
+        .target(core),
+        .external(name: "Swinject"),
     ],
     settings: .settings(
         base: [

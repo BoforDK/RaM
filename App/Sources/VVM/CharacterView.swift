@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Swinject
+import AppCore
 
 struct CharacterView: View {
-    var character: Character
+    var character: AppCore.Character
     @Environment(\.dismiss) private var dismiss
     @Environment(\.showTabBar) private var showTabBar
     @State var isFavorite: Bool = false

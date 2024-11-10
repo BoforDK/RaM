@@ -7,6 +7,7 @@
 
 import Foundation
 import Swinject
+import AppCore
 
 final class CharacterSearchViewModel: ObservableObject {
     @Published var characters = [Character]()

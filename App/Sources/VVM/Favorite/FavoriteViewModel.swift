@@ -8,9 +8,10 @@
 import Foundation
 import Swinject
 import Combine
+import AppCore
 
 final class FavoriteViewModel: ObservableObject {
-    @Published var characters = [Character]()
+    @Published var characters = [AppCore.Character]()
     private var cancellable: AnyCancellable!
     private let favoriteRepository: FavoriteHandlerProtocol
 

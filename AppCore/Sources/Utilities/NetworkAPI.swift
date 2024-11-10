@@ -8,7 +8,8 @@
 import Foundation
 
 // MARK: – NetworkApi protocol
-protocol NetworkAPIProtocol {
+
+public protocol NetworkAPIProtocol {
     func sendRequest<T: Decodable>(type: T.Type, _ request: URLRequest) async throws -> T
 
     func sendRequest(_ request: URLRequest) async throws -> Data
@@ -19,18 +20,20 @@ protocol NetworkAPIProtocol {
 }
 
 // MARK: - NetworkApi
-class NetworkAPI: NetworkAPIProtocol {
+
+public class NetworkAPI: NetworkAPIProtocol {
     private var session: URLSession
     private var allHTTPHeaderFields = ["Content-Type": "application/json"]
-
-    init(session: URLSession, allHTTPHeaderFields: [String: String]) {
+    
+    public init(session: URLSession, allHTTPHeaderFields: [String: String]) {
         self.session = session
         self.allHTTPHeaderFields = allHTTPHeaderFields
     }
-
-    init(timeoutIntervalForRequest: TimeInterval = 10.0,
-                  timeoutIntervalForResource: TimeInterval = 10.0,
-                  allHTTPHeaderFields: [String: String] = ["Content-Type": "application/json"]
+    
+    public init(
+        timeoutIntervalForRequest: TimeInterval = 10.0,
+        timeoutIntervalForResource: TimeInterval = 10.0,
+        allHTTPHeaderFields: [String: String] = ["Content-Type": "application/json"]
     ) {
         self.allHTTPHeaderFields = allHTTPHeaderFields
         let sessionConfig = URLSessionConfiguration.default
@@ -38,14 +41,17 @@ class NetworkAPI: NetworkAPIProtocol {
         sessionConfig.timeoutIntervalForResource = timeoutIntervalForResource
         session = URLSession(configuration: sessionConfig)
     }
-
-    func sendRequest<T: Decodable>(type: T.Type, _ request: URLRequest) async throws -> T {
+    
+    public func sendRequest<T: Decodable>(
+        type: T.Type,
+        _ request: URLRequest
+    ) async throws -> T {
         let data = try await sendRequest(request)
         let decodedData = try JSONDecoder().decode(T.self, from: data)
         return decodedData
     }
-
-    func sendRequest(_ request: URLRequest) async throws -> Data {
+    
+    public func sendRequest(_ request: URLRequest) async throws -> Data {
         let data: Data!
         let response: URLResponse!
         (data, response) = try await session.data(for: request)
@@ -56,8 +62,8 @@ class NetworkAPI: NetworkAPIProtocol {
         }
         return data
     }
-
-    func createPostRequest<T: Encodable>(url: URL, object: T) throws -> URLRequest {
+    
+    public func createPostRequest<T: Encodable>(url: URL, object: T) throws -> URLRequest {
         let jsonData = try JSONEncoder().encode(object)
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -65,15 +71,17 @@ class NetworkAPI: NetworkAPIProtocol {
         request.httpBody = jsonData
         return request
     }
-
-    func createGetRequest(url: URL) throws -> URLRequest {
+    
+    public func createGetRequest(url: URL) throws -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
         request.allHTTPHeaderFields = allHTTPHeaderFields
         return request
     }
 
-    enum HTTPMethod: String {
+    // MARK: - HTTPMethod
+    
+    public enum HTTPMethod: String {
         case post
         case get
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 import Swinject
 import Combine
+import AppCore
 
 struct FavoriteView: View {
     @ObservedObject var vm = FavoriteViewModel()

@@ -7,13 +7,14 @@
 
 import CoreData
 import Combine
+import AppCore
 
-class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
-    private(set) var favorites = CurrentValueSubject<[CDFavorite], Never>([])
+public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
+    public private(set) var favorites = CurrentValueSubject<[CDFavorite], Never>([])
     private let fetchController: NSFetchedResultsController<CDFavorite>
     private let context: NSManagedObjectContext
 
-    override init() {
+    public override init() {
         context = PersistenceController.shared.container.viewContext
         let relationshipFetchReques: NSFetchRequest<CDFavorite> = CDFavorite.fetchRequest()
         let sortByTitle = NSSortDescriptor(key: "id", ascending: true)
@@ -34,31 +35,35 @@ class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
 
-    func delete(id: Int64) throws {
+    public func delete(id: Int64) throws {
         let foundFavorite = favorites.value.first { $0.id == id }
+        
         if let strongFoundFavorite = foundFavorite {
             context.delete(strongFoundFavorite)
             try context.save()
         }
     }
 
-    func create(id: Int64) throws {
+    public func create(id: Int64) throws {
         guard findById(id) == nil else {
             return
         }
-        let Favorite = CDFavorite(context: context)
-        Favorite.id = id
+        
+        let favorite = CDFavorite(context: context)
+        favorite.id = id
         try context.save()
     }
 
-    func findById(_ id: Int64) -> CDFavorite? {
+    public func findById(_ id: Int64) -> CDFavorite? {
         return favorites.value.first{ $0.id == id }
     }
 
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
         guard let favorites =  controller.fetchedObjects as? [CDFavorite] else {
             return
         }
+        
         NSLog("Content has changed, reloading medias")
         self.favorites.value = favorites
     }
