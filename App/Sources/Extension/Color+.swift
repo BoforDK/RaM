@@ -8,8 +8,8 @@
 import SwiftUI
 
 extension Color {
-    static var background = Color("backgroundColor")
-    static var listItem = Color("listItemColor")
+    static var background = Color(.background)
+    static var listItem = Color(.listItem)
     static var accent = Color.gray
     static var foreground = Color.blue
 }
