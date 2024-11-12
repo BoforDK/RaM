@@ -6,6 +6,8 @@
 //
 
 import Swinject
+import AppUI
+import AppCore
 
 final class SwinjectInit {
     static func initConteiner() {

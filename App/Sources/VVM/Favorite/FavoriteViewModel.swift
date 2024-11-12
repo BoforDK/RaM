@@ -9,6 +9,7 @@ import Foundation
 import Swinject
 import Combine
 import AppCore
+import AppUI
 
 final class FavoriteViewModel: ObservableObject {
     @Published var characters = [AppCore.Character]()

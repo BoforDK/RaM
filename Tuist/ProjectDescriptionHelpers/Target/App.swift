@@ -22,10 +22,10 @@ public let app: Target = .target(
         ]
     ),
     sources: ["\(targetName)/Sources/**"],
-    resources: ["\(targetName)/Resources/**"],
     entitlements: "App/App.entitlements",
     dependencies: [
-        .target(core),
+        .target(appCore),
+        .target(appUI),
         .external(name: "Swinject"),
     ],
     settings: .settings(

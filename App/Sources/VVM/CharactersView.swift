@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppUI
 
 struct CharactersView: View {
     @Environment(\.isSearching) private var isSearching
@@ -13,10 +14,12 @@ struct CharactersView: View {
     var searchText: String = ""
 
     var body: some View {
-        SearchableView(searchText: searchText,
-                       prompt: "Search character",
-                       content: charactersListView,
-                       searchContent: searchContent)
+        SearchableView(
+            searchText: searchText,
+            prompt: "Search character",
+            content: charactersListView,
+            searchContent: searchContent
+        )
     }
 
     func charactersListView() -> some View {

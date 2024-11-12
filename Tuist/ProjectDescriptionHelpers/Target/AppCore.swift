@@ -12,7 +12,7 @@ private let bundleID = "\(AppSetup.current.moduleBundleIDPrefix).core"
 
 // MARK: - Target
 
-public let core = Target.target(
+public let appCore = Target.target(
     name: targetName,
     destinations: .iOS,
     product: .framework,

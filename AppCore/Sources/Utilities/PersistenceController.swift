@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import AppCore
 
 public class PersistenceController {
     

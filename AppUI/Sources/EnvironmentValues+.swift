@@ -11,7 +11,7 @@ private struct CustomTabBarKey: EnvironmentKey {
     static let defaultValue: (Bool) -> Void = {_ in}
 }
 
-extension EnvironmentValues {
+public extension EnvironmentValues {
     var showTabBar: (Bool) -> Void {
         get { self[CustomTabBarKey.self] }
         set { self[CustomTabBarKey.self] = newValue }

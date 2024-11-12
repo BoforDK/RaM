@@ -1,13 +1,13 @@
 //
 //  CustomTabView.swift
-//  RaM
+//  AppUI
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import SwiftUI
 
-struct CustomTabView<C0, C1, TB1, TB2>: View
+public struct CustomTabView<C0, C1, TB1, TB2>: View
     where C0: View, C1: View, TB1: View, TB2: View
 {
     @ViewBuilder var content: () -> TupleView<(C0, C1)>
@@ -19,12 +19,16 @@ struct CustomTabView<C0, C1, TB1, TB2>: View
     let tabBarVerticalPadding: CGFloat = 15
     let tabBarBotOffset: CGFloat = 25
     let tabBarShadowSize: CGFloat = 10
-
-    private var offsetToHide: CGFloat {
-        2 * tabBarVerticalPadding + tabBarIconSize + tabBarBotOffset + tabBarIconSize
+    
+    public init(
+        @ViewBuilder content: @escaping () -> TupleView<(C0, C1)>,
+        @ViewBuilder tabBar: @escaping () -> TupleView<(TB1, TB2)>
+    ) {
+        self.content = content
+        self.tabBar = tabBar
     }
 
-    var body: some View {
+    public var body: some View {
         TabView(selection: $tabSelection) {
             let value = content().value
             value.0
@@ -77,5 +81,9 @@ struct CustomTabView<C0, C1, TB1, TB2>: View
         withAnimation(.spring()) {
             showTabBar = show
         }
+    }
+    
+    private var offsetToHide: CGFloat {
+        2 * tabBarVerticalPadding + tabBarIconSize + tabBarBotOffset + tabBarIconSize
     }
 }

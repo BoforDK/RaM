@@ -1,13 +1,13 @@
 //
 //  Color+.swift
-//  RaM
+//  AppUI
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import SwiftUI
 
-extension Color {
+public extension Color {
     static var background = Color(.background)
     static var listItem = Color(.listItem)
     static var accent = Color.gray
