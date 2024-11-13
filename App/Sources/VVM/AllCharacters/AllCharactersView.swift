@@ -1,6 +1,6 @@
 //
 //  AllCharactersView.swift
-//  RaM
+//  App
 //
 //  Created by Alexander on 26.01.2023.
 //

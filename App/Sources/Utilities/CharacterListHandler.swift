@@ -1,6 +1,6 @@
 //
 //  CharacterListHandler.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
