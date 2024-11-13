@@ -9,7 +9,9 @@ let project = Project(
         ]
     ),
     targets: [
-        app
+        app,
+        appCore,
+        appUI,
     ]
 )
 

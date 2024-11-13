@@ -1,16 +1,18 @@
 //
 //  FavoriteHandler.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import Foundation
 import Combine
+import AppCore
 
-//MARK: - FavoriteHandler protocol
+// MARK: - FavoriteHandler protocol
+
 protocol FavoriteHandlerProtocol {
-    var favorites: CurrentValueSubject<[Character], Never> { get }
+    var favorites: CurrentValueSubject<[Person], Never> { get }
 
     @discardableResult
     func add(id: Int) -> Bool
@@ -19,14 +21,14 @@ protocol FavoriteHandlerProtocol {
     func contains(id: Int) -> Bool
 }
 
-//MARK: - FavoriteHandler
+// MARK: - FavoriteHandler
+
 class FavoriteHandler: FavoriteHandlerProtocol {
     private let favoriteRepository: FavoriteRepository
-    private(set) var favorites = CurrentValueSubject<[Character], Never>([])
+    private(set) var favorites = CurrentValueSubject<[Person], Never>([])
     private var cancellable: AnyCancellable!
     private var apiHandler: APIHandler
 
-    //MARK: Public
     init(favoriteRepository: FavoriteRepository, apiHandler: APIHandler) {
         self.favoriteRepository = favoriteRepository
         self.apiHandler = apiHandler
@@ -65,7 +67,6 @@ class FavoriteHandler: FavoriteHandlerProtocol {
         return favoriteRepository.findById(Int64(id)) != nil
     }
 
-    //MARK: Private
     private func getCharacter(ids: [Int]) {
         Task {
             do {
@@ -78,7 +79,7 @@ class FavoriteHandler: FavoriteHandlerProtocol {
     }
 
     @MainActor
-    private func setCharacters(characters: [Character]) {
+    private func setCharacters(characters: [Person]) {
         self.favorites.value = characters
     }
 }

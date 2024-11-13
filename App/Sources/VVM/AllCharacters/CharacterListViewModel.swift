@@ -1,6 +1,6 @@
 //
 //  AllCharactersViewModel.swift
-//  RaM
+//  App
 //
 //  Created by Alexander on 26.01.2023.
 //
@@ -8,9 +8,10 @@
 import Foundation
 import Swinject
 import Combine
+import AppCore
 
 final class AllCharactersViewModel: ObservableObject {
-    @Published var characters = [Character]()
+    @Published var characters = [Person]()
     @Published var lastPageWasLoaded: Bool = false
     @Published var favoriteIds = [Int]()
     private var characterListHandler: CharacterListHandlerProtocol
@@ -51,7 +52,7 @@ final class AllCharactersViewModel: ObservableObject {
     }
 
     @MainActor
-    private func setCharacters(characters: [Character]) {
+    private func setCharacters(characters: [Person]) {
         self.characters.removeAll()
         self.characters = characterListHandler.characters
     }

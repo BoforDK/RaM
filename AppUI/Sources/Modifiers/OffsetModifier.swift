@@ -1,17 +1,25 @@
 //
 //  OffsetModifier.swift
-//  RaM
+//  AppUI
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import SwiftUI
 
-struct OffsetModifier: ViewModifier {
+public struct OffsetModifier: ViewModifier {
     @Binding var offset: CGFloat
-    let coordinateSpaceName: String
+    public let coordinateSpaceName: String
+    
+    public init(
+        offset: Binding<CGFloat>,
+        coordinateSpaceName: String
+    ) {
+        self._offset = offset
+        self.coordinateSpaceName = coordinateSpaceName
+    }
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .overlay {
                 GeometryReader { proxy in
@@ -29,10 +37,10 @@ struct OffsetModifier: ViewModifier {
     }
 }
 
-struct OffsetKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
+public struct OffsetKey: PreferenceKey {
+    public static var defaultValue: CGFloat = 0
 
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+    public static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }
 }

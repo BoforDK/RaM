@@ -1,15 +1,17 @@
 //
 //  CharacterListView.swift
-//  RaM
+//  App
 //
 //  Created by Alexander on 26.01.2023.
 //
 
 import SwiftUI
+import AppCore
+import AppUI
 
 struct CharacterListView: View {
     @Environment(\.showTabBar) private var showTabBar
-    var characters: [Character] = []
+    var characters: [Person] = []
     var favoriteIds: [Int] = []
     var lastElementAction: (() -> Void)?
     @State var offset: CGFloat = 0.0
@@ -26,8 +28,12 @@ struct CharacterListView: View {
                     .opacity(lastElementAction == nil ? 0 : 1)
             }
             .frame(maxWidth: .infinity)
-            .modifier(OffsetModifier(offset: $offset,
-                                     coordinateSpaceName: coordinateSpaceName))
+            .modifier(
+                OffsetModifier(
+                    offset: $offset,
+                    coordinateSpaceName: coordinateSpaceName
+                )
+            )
             .onChange(of: offset, perform: calculateShowingTabBar)
             .onAppear {
                 showTabBar(true)
@@ -51,13 +57,15 @@ struct CharacterListView: View {
         }
     }
 
-    func characterLabel(character: Character) -> some View {
-        CharacterItemView(character: character,
-                          isFavorite: favoriteIds.contains(character.id))
-            .padding(10)
-            .background(Color.listItem)
-            .cornerRadius(15)
-            .padding([.horizontal], 15)
+    func characterLabel(character: Person) -> some View {
+        CharacterItemView(
+            character: character,
+            isFavorite: favoriteIds.contains(character.id)
+        )
+        .padding(10)
+        .background(Color.listItem)
+        .cornerRadius(15)
+        .padding([.horizontal], 15)
     }
 
     @ViewBuilder

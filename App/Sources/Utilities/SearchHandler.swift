@@ -1,24 +1,27 @@
 //
 //  SearchHandler.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import Foundation
+import AppCore
 
-//MARK: - SearchListHandler protocol
+// MARK: - SearchListHandler protocol
+
 protocol SearchHandlerProtocol {
-    var characters: [Character] { get }
+    var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
 
     func setSearchText(searchText: String) async throws
     func loadNextPage() async throws
 }
 
-//MARK: - SearchListHandler
+// MARK: - SearchListHandler
+
 class SearchHandler: SearchHandlerProtocol {
-    private(set) var characters: [Character] = []
+    private(set) var characters: [Person] = []
     private(set) var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var searchText: String = ""
@@ -26,7 +29,6 @@ class SearchHandler: SearchHandlerProtocol {
     private var currentPage: Int = 0
     private var count: Int? = nil
 
-    //MARK: Public
     init(apiHandler: APIHandlerProtocol) {
         self.apiHandler = apiHandler
     }
@@ -61,7 +63,6 @@ class SearchHandler: SearchHandlerProtocol {
         oldSearchText = searchText
     }
 
-    //MARK: Private
     private func reset() {
         characters = []
         lastPageWasLoaded = false

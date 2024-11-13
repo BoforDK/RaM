@@ -1,14 +1,15 @@
 //
 //  CharacterItemView.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import SwiftUI
+import AppCore
 
 struct CharacterItemView: View {
-    var character: Character
+    var character: Person
     var isFavorite: Bool
 
     var body: some View {

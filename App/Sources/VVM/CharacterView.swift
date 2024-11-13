@@ -1,15 +1,16 @@
 //
 //  CharacterView.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import SwiftUI
 import Swinject
+import AppCore
 
 struct CharacterView: View {
-    var character: Character
+    var character: Person
     @Environment(\.dismiss) private var dismiss
     @Environment(\.showTabBar) private var showTabBar
     @State var isFavorite: Bool = false
@@ -20,7 +21,7 @@ struct CharacterView: View {
     let gridSpacing: CGFloat = 10
     let imageSize: CGFloat = 150
 
-    init(character: Character) {
+    init(character: Person) {
         self.character = character
     }
 
@@ -67,6 +68,7 @@ struct CharacterView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.gray)
                     .padding(.leading, 5)
+                
                 Text(character.name)
                     .foregroundColor(.gray)
                     .padding(5)

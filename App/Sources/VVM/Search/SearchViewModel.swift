@@ -1,15 +1,16 @@
 //
 //  SearchViewModel.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import Foundation
 import Swinject
+import AppCore
 
 final class CharacterSearchViewModel: ObservableObject {
-    @Published var characters = [Character]()
+    @Published var characters = [Person]()
     @Published var lastPageWasLoaded: Bool = true
     private let searchListHandler: SearchHandlerProtocol
 
@@ -42,7 +43,7 @@ final class CharacterSearchViewModel: ObservableObject {
     }
 
     @MainActor
-    private func setCharacters(characters: [Character]) {
+    private func setCharacters(characters: [Person]) {
         self.characters = characters
     }
 

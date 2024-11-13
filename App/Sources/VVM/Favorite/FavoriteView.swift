@@ -1,6 +1,6 @@
 //
 //  FavoriteView.swift
-//  RaM
+//  App
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
@@ -8,6 +8,7 @@
 import SwiftUI
 import Swinject
 import Combine
+import AppCore
 
 struct FavoriteView: View {
     @ObservedObject var vm = FavoriteViewModel()

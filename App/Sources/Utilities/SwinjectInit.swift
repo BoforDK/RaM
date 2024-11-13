@@ -1,11 +1,13 @@
 //
 //  SwinjectInit.swift
-//  RaM
+//  App
 //
 //  Created by Alexander on 26.01.2023.
 //
 
 import Swinject
+import AppUI
+import AppCore
 
 final class SwinjectInit {
     static func initConteiner() {
