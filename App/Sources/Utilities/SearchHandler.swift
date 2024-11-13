@@ -11,7 +11,7 @@ import AppCore
 // MARK: - SearchListHandler protocol
 
 protocol SearchHandlerProtocol {
-    var characters: [Character] { get }
+    var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
 
     func setSearchText(searchText: String) async throws
@@ -21,7 +21,7 @@ protocol SearchHandlerProtocol {
 // MARK: - SearchListHandler
 
 class SearchHandler: SearchHandlerProtocol {
-    private(set) var characters: [Character] = []
+    private(set) var characters: [Person] = []
     private(set) var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var searchText: String = ""

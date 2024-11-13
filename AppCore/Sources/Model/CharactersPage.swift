@@ -10,11 +10,11 @@ import Foundation
 public struct CharactersPage: Decodable {
     
     public let info: PageInfo
-    public let results: [Character]
+    public let results: [Person]
     
     public init(
         info: PageInfo,
-        results: [Character]
+        results: [Person]
     ) {
         self.info = info
         self.results = results

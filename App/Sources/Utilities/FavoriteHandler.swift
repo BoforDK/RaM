@@ -12,7 +12,7 @@ import AppCore
 // MARK: - FavoriteHandler protocol
 
 protocol FavoriteHandlerProtocol {
-    var favorites: CurrentValueSubject<[Character], Never> { get }
+    var favorites: CurrentValueSubject<[Person], Never> { get }
 
     @discardableResult
     func add(id: Int) -> Bool
@@ -25,7 +25,7 @@ protocol FavoriteHandlerProtocol {
 
 class FavoriteHandler: FavoriteHandlerProtocol {
     private let favoriteRepository: FavoriteRepository
-    private(set) var favorites = CurrentValueSubject<[Character], Never>([])
+    private(set) var favorites = CurrentValueSubject<[Person], Never>([])
     private var cancellable: AnyCancellable!
     private var apiHandler: APIHandler
 
@@ -79,7 +79,7 @@ class FavoriteHandler: FavoriteHandlerProtocol {
     }
 
     @MainActor
-    private func setCharacters(characters: [Character]) {
+    private func setCharacters(characters: [Person]) {
         self.favorites.value = characters
     }
 }

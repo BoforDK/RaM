@@ -13,8 +13,8 @@ import AppCore
 public protocol APIHandlerProtocol {
     func getCharactersPage(page: Int) async throws -> CharactersPage
     func getSearchPage(name: String, page: Int) async throws -> CharactersPage
-    func getCharacters(ids: [Int]) async throws -> [Character]
-    func getCharacter(id: Int) async throws -> Character
+    func getCharacters(ids: [Int]) async throws -> [Person]
+    func getCharacter(id: Int) async throws -> Person
 }
 
 // MARK: - APIHandler
@@ -40,7 +40,7 @@ public class APIHandler: APIHandlerProtocol {
         
     }
 
-    public func getCharacters(ids: [Int]) async throws -> [Character] {
+    public func getCharacters(ids: [Int]) async throws -> [Person] {
         if ids.count == 1 {
             return [try await getCharacter(id: ids[0])]
         } else if ids.isEmpty {
@@ -59,13 +59,13 @@ public class APIHandler: APIHandlerProtocol {
             }
             
             let request = try networkAPI.createGetRequest(url: url)
-            let characters = try await networkAPI.sendRequest(type: [Character].self, request)
+            let characters = try await networkAPI.sendRequest(type: [Person].self, request)
             
             return characters
         }
     }
 
-    public func getCharacter(id: Int) async throws -> Character {
+    public func getCharacter(id: Int) async throws -> Person {
         let stringURL = "\(LinkSource.characters)/\(id)"
         
         guard let url = URL(string: stringURL) else {
@@ -73,7 +73,7 @@ public class APIHandler: APIHandlerProtocol {
         }
         
         let request = try networkAPI.createGetRequest(url: url)
-        let character = try await networkAPI.sendRequest(type: Character.self, request)
+        let character = try await networkAPI.sendRequest(type: Person.self, request)
         
         return character
     }

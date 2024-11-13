@@ -1,5 +1,5 @@
 //
-//  Character.swift
+//  Person.swift
 //  AppCore
 //
 //  Created by Alexander Grigorov on 24.01.2023.
@@ -8,7 +8,7 @@
 import Foundation
 
 //TODO: rename
-public struct Character: Decodable {
+public struct Person: Decodable {
     
     public let id: Int
     public let name: String

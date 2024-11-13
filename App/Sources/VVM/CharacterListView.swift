@@ -11,7 +11,7 @@ import AppUI
 
 struct CharacterListView: View {
     @Environment(\.showTabBar) private var showTabBar
-    var characters: [AppCore.Character] = []
+    var characters: [Person] = []
     var favoriteIds: [Int] = []
     var lastElementAction: (() -> Void)?
     @State var offset: CGFloat = 0.0
@@ -57,7 +57,7 @@ struct CharacterListView: View {
         }
     }
 
-    func characterLabel(character: Character) -> some View {
+    func characterLabel(character: Person) -> some View {
         CharacterItemView(
             character: character,
             isFavorite: favoriteIds.contains(character.id)

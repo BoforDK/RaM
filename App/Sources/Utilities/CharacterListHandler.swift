@@ -10,7 +10,7 @@ import AppCore
 
 //MARK: - CharacterListHandler protocol
 protocol CharacterListHandlerProtocol {
-    var characters: [Character] { get }
+    var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
 
     func loadNextPage() async throws
@@ -18,7 +18,7 @@ protocol CharacterListHandlerProtocol {
 
 //MARK: - CharacterListHandler
 class CharacterListHandler: CharacterListHandlerProtocol {
-    private(set) var characters: [Character] = []
+    private(set) var characters: [Person] = []
     private(set) var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var currentPage: Int = 0

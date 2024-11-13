@@ -10,7 +10,7 @@ import Swinject
 import AppCore
 
 struct CharacterView: View {
-    var character: AppCore.Character
+    var character: Person
     @Environment(\.dismiss) private var dismiss
     @Environment(\.showTabBar) private var showTabBar
     @State var isFavorite: Bool = false
@@ -21,7 +21,7 @@ struct CharacterView: View {
     let gridSpacing: CGFloat = 10
     let imageSize: CGFloat = 150
 
-    init(character: Character) {
+    init(character: Person) {
         self.character = character
     }
 

@@ -12,7 +12,7 @@ import AppCore
 import AppUI
 
 final class FavoriteViewModel: ObservableObject {
-    @Published var characters = [AppCore.Character]()
+    @Published var characters = [Person]()
     private var cancellable: AnyCancellable!
     private let favoriteRepository: FavoriteHandlerProtocol
 
@@ -34,7 +34,7 @@ final class FavoriteViewModel: ObservableObject {
         }
     }
 
-    private func setCharacters(characters: [Character]) {
+    private func setCharacters(characters: [Person]) {
         self.characters = characters
     }
 }

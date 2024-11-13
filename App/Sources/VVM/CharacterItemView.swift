@@ -9,7 +9,7 @@ import SwiftUI
 import AppCore
 
 struct CharacterItemView: View {
-    var character: Character
+    var character: Person
     var isFavorite: Bool
 
     var body: some View {
