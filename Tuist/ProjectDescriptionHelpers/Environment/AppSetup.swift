@@ -15,7 +15,7 @@ public struct AppSetup {
     public let environment: Environment
     public let configuration: Configuration
     public let moduleBundleIDPrefix = "com.ram"
-    
+
     public var bundleID: String {
         switch (configuration, environment) {
         case (.debug, _):
@@ -30,10 +30,10 @@ public struct AppSetup {
             fatalError("Config: Release, Environment: Production bundleID not configured")
         }
     }
-    
+
     public var appName: String {
         let appName = "RaM"
-        
+
         if configuration == .release, environment == .production {
             return appName
         }
@@ -43,7 +43,7 @@ public struct AppSetup {
             environment.appNameValue
         ].joined(separator: " ")
     }
-    
+
     public var projectConfigurations: [ProjectDescription.Configuration] {
         switch configuration {
         case .debug:

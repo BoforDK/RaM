@@ -8,9 +8,9 @@
 import Foundation
 
 public struct Location: Decodable {
-    
+
     public let name: String
-    
+
     public init(
         name: String
     ) {

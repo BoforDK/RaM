@@ -8,7 +8,7 @@
 import CoreData
 
 public class PersistenceController {
-    
+
     public static var shared: PersistenceController = PersistenceController()
 
     public let container: NSPersistentContainer
@@ -23,7 +23,7 @@ public class PersistenceController {
         else {
             fatalError("Failed to locate Core Data model")
         }
-        
+
         container = NSPersistentContainer(name: "RaM", managedObjectModel: model)
         container.persistentStoreDescriptions.forEach { storeDesc in
             storeDesc.shouldMigrateStoreAutomatically = true
@@ -40,11 +40,11 @@ public class PersistenceController {
 
     public func saveContext() {
         let context = container.viewContext
-        
+
         guard context.hasChanges else {
             return
         }
-        
+
         do {
             try context.save()
         } catch {

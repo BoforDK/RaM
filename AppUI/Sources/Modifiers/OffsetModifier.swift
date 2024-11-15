@@ -10,7 +10,7 @@ import SwiftUI
 public struct OffsetModifier: ViewModifier {
     @Binding var offset: CGFloat
     public let coordinateSpaceName: String
-    
+
     public init(
         offset: Binding<CGFloat>,
         coordinateSpaceName: String

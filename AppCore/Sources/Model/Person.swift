@@ -7,9 +7,8 @@
 
 import Foundation
 
-//TODO: rename
 public struct Person: Decodable {
-    
+
     public let id: Int
     public let name: String
     public let status: Status
@@ -19,7 +18,7 @@ public struct Person: Decodable {
     public let origin: Location
     public let location: Location
     public let image: String
-    
+
     public init(
         id: Int,
         name: String,

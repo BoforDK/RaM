@@ -23,10 +23,16 @@ public let appCore = Target.target(
         "\(targetName)/Resources/**",
     ],
     entitlements: nil,
-    //todo
-//    scripts: [
-//        .swiftlint(),
-//        .licensePlist()
-//    ],
+    scripts: [
+        .post(
+            script: """
+                $HOME/.local/bin/mise exec -- swiftlint --fix
+                $HOME/.local/bin/mise exec -- swiftlint
+                """,
+            name: "SwiftLint",
+            basedOnDependencyAnalysis: false
+        )
+    ]
+,
     dependencies: []
 )

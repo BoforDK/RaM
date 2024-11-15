@@ -37,7 +37,7 @@ public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
 
     public func delete(id: Int64) throws {
         let foundFavorite = favorites.value.first { $0.id == id }
-        
+
         if let strongFoundFavorite = foundFavorite {
             context.delete(strongFoundFavorite)
             try context.save()
@@ -48,7 +48,7 @@ public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
         guard findById(id) == nil else {
             return
         }
-        
+
         let favorite = CDFavorite(context: context)
         favorite.id = id
         try context.save()
@@ -59,11 +59,11 @@ public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
+
         guard let favorites =  controller.fetchedObjects as? [CDFavorite] else {
             return
         }
-        
+
         NSLog("Content has changed, reloading medias")
         self.favorites.value = favorites
     }
