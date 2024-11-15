@@ -12,7 +12,7 @@ public struct SearchableView<Content: View, SearchContent: View>: View {
     var prompt: String = ""
     @ViewBuilder var content: () -> Content
     @ViewBuilder var searchContent: (String) -> SearchContent
-    
+
     public init(
         searchText: String = "",
         prompt: String = "",
@@ -24,7 +24,7 @@ public struct SearchableView<Content: View, SearchContent: View>: View {
         self.content = content
         self.searchContent = searchContent
     }
-    
+
     public var body: some View {
         InnerSearchableView(
             content: content,
@@ -40,7 +40,7 @@ fileprivate struct InnerSearchableView<Content: View, SearchContent: View>: View
     @Environment(\.isSearching) private var isSearching
     @ViewBuilder var content: () -> Content
     @ViewBuilder var searchContent: () -> SearchContent
-    
+
     var body: some View {
         if isSearching {
             searchContent()

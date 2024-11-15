@@ -19,6 +19,9 @@ only_rules:
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
+  - .build
+  - Path/To/SPM/Dependency
+  - Tuist/.build
 force_cast: warning # implicitly
 function_body_length:
   - 100 # warning

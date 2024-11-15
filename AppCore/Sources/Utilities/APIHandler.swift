@@ -1,12 +1,11 @@
 //
 //  APIHandler.swift
-//  RaM
+//  AppCore
 //
 //  Created by Alexander Grigorov on 24.01.2023.
 //
 
 import Foundation
-import AppCore
 
 // MARK: - APIHandler protocol
 
@@ -37,7 +36,7 @@ public class APIHandler: APIHandlerProtocol {
             queryItems: [
                 .init(name: LinkSource.filterByName, value: name)]
         )
-        
+
     }
 
     public func getCharacters(ids: [Int]) async throws -> [Person] {
@@ -47,34 +46,34 @@ public class APIHandler: APIHandlerProtocol {
             return []
         } else {
             var stringIds = ids.reduce("", {"\($0),\($1)"})
-            
+
             if !stringIds.isEmpty {
                 stringIds.removeFirst()
             }
-            
+
             let stringURL = "\(LinkSource.characters)/\(stringIds)"
-            
+
             guard let url = URL(string: stringURL) else {
                 throw URLError(.badServerResponse)
             }
-            
+
             let request = try networkAPI.createGetRequest(url: url)
             let characters = try await networkAPI.sendRequest(type: [Person].self, request)
-            
+
             return characters
         }
     }
 
     public func getCharacter(id: Int) async throws -> Person {
         let stringURL = "\(LinkSource.characters)/\(id)"
-        
+
         guard let url = URL(string: stringURL) else {
             throw URLError(.badServerResponse)
         }
-        
+
         let request = try networkAPI.createGetRequest(url: url)
         let character = try await networkAPI.sendRequest(type: Person.self, request)
-        
+
         return character
     }
 
@@ -86,7 +85,7 @@ public class APIHandler: APIHandlerProtocol {
         guard var url = URL(string: source) else {
             throw URLError(.badServerResponse)
         }
-        
+
         url.append(queryItems: [.init(name: LinkSource.pageParam, value: "\(page)")])
         url.append(queryItems: queryItems)
         let request = try networkAPI.createGetRequest(url: url)
@@ -94,7 +93,7 @@ public class APIHandler: APIHandlerProtocol {
             type: CharactersPage.self,
             request
         )
-        
+
         return charactersPage
     }
 }

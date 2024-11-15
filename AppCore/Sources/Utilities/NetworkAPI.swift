@@ -24,12 +24,12 @@ public protocol NetworkAPIProtocol {
 public class NetworkAPI: NetworkAPIProtocol {
     private var session: URLSession
     private var allHTTPHeaderFields = ["Content-Type": "application/json"]
-    
+
     public init(session: URLSession, allHTTPHeaderFields: [String: String]) {
         self.session = session
         self.allHTTPHeaderFields = allHTTPHeaderFields
     }
-    
+
     public init(
         timeoutIntervalForRequest: TimeInterval = 10.0,
         timeoutIntervalForResource: TimeInterval = 10.0,
@@ -41,7 +41,7 @@ public class NetworkAPI: NetworkAPIProtocol {
         sessionConfig.timeoutIntervalForResource = timeoutIntervalForResource
         session = URLSession(configuration: sessionConfig)
     }
-    
+
     public func sendRequest<T: Decodable>(
         type: T.Type,
         _ request: URLRequest
@@ -50,7 +50,7 @@ public class NetworkAPI: NetworkAPIProtocol {
         let decodedData = try JSONDecoder().decode(T.self, from: data)
         return decodedData
     }
-    
+
     public func sendRequest(_ request: URLRequest) async throws -> Data {
         let data: Data!
         let response: URLResponse!
@@ -62,7 +62,7 @@ public class NetworkAPI: NetworkAPIProtocol {
         }
         return data
     }
-    
+
     public func createPostRequest<T: Encodable>(url: URL, object: T) throws -> URLRequest {
         let jsonData = try JSONEncoder().encode(object)
         var request = URLRequest(url: url)
@@ -71,7 +71,7 @@ public class NetworkAPI: NetworkAPIProtocol {
         request.httpBody = jsonData
         return request
     }
-    
+
     public func createGetRequest(url: URL) throws -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -80,7 +80,7 @@ public class NetworkAPI: NetworkAPIProtocol {
     }
 
     // MARK: - HTTPMethod
-    
+
     public enum HTTPMethod: String {
         case post
         case get

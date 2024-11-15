@@ -19,7 +19,7 @@ public struct CustomTabView<C0, C1, TB1, TB2>: View
     let tabBarVerticalPadding: CGFloat = 15
     let tabBarBotOffset: CGFloat = 25
     let tabBarShadowSize: CGFloat = 10
-    
+
     public init(
         @ViewBuilder content: @escaping () -> TupleView<(C0, C1)>,
         @ViewBuilder tabBar: @escaping () -> TupleView<(TB1, TB2)>
@@ -82,7 +82,7 @@ public struct CustomTabView<C0, C1, TB1, TB2>: View
             showTabBar = show
         }
     }
-    
+
     private var offsetToHide: CGFloat {
         2 * tabBarVerticalPadding + tabBarIconSize + tabBarBotOffset + tabBarIconSize
     }

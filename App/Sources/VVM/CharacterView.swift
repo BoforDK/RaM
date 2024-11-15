@@ -68,7 +68,7 @@ struct CharacterView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.gray)
                     .padding(.leading, 5)
-                
+
                 Text(character.name)
                     .foregroundColor(.gray)
                     .padding(5)

@@ -8,10 +8,10 @@
 import Foundation
 
 public struct PageInfo: Decodable {
-    
+
     public let count: Int
     public let pages: Int
-    
+
     public init(
         count: Int,
         pages: Int

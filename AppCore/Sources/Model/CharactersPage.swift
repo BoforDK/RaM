@@ -8,10 +8,10 @@
 import Foundation
 
 public struct CharactersPage: Decodable {
-    
+
     public let info: PageInfo
     public let results: [Person]
-    
+
     public init(
         info: PageInfo,
         results: [Person]
