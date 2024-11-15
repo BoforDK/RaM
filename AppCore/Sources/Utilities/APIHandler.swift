@@ -19,6 +19,7 @@ public protocol APIHandlerProtocol {
 // MARK: - APIHandler
 
 public class APIHandler: APIHandlerProtocol {
+
     let networkAPI: NetworkAPIProtocol
 
     public init(networkAPI: NetworkAPIProtocol) {
@@ -26,17 +27,23 @@ public class APIHandler: APIHandlerProtocol {
     }
 
     public func getCharactersPage(page: Int) async throws -> CharactersPage {
-        try await getCharactersPage(source: LinkSource.charactersPage, page: page)
+        try await getCharactersPage(
+            source: LinkSource.charactersPage,
+            page: page
+        )
     }
 
-    public func getSearchPage(name: String, page: Int) async throws -> CharactersPage {
+    public func getSearchPage(
+        name: String,
+        page: Int
+    ) async throws -> CharactersPage {
         try await getCharactersPage(
             source: LinkSource.filter,
             page: page,
             queryItems: [
-                .init(name: LinkSource.filterByName, value: name)]
+                .init(name: LinkSource.filterByName, value: name)
+            ]
         )
-
     }
 
     public func getCharacters(ids: [Int]) async throws -> [Person] {

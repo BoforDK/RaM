@@ -7,11 +7,10 @@
 
 import Foundation
 import Combine
-import AppCore
 
 // MARK: - FavoriteHandler protocol
 
-protocol FavoriteHandlerProtocol {
+public protocol FavoriteHandlerProtocol {
     var favorites: CurrentValueSubject<[Person], Never> { get }
 
     @discardableResult
@@ -23,13 +22,14 @@ protocol FavoriteHandlerProtocol {
 
 // MARK: - FavoriteHandler
 
-class FavoriteHandler: FavoriteHandlerProtocol {
+public class FavoriteHandler: FavoriteHandlerProtocol {
+
     private let favoriteRepository: FavoriteRepository
-    private(set) var favorites = CurrentValueSubject<[Person], Never>([])
+    private(set) public var favorites = CurrentValueSubject<[Person], Never>([])
     private var cancellable: AnyCancellable!
     private var apiHandler: APIHandler
 
-    init(favoriteRepository: FavoriteRepository, apiHandler: APIHandler) {
+    public init(favoriteRepository: FavoriteRepository, apiHandler: APIHandler) {
         self.favoriteRepository = favoriteRepository
         self.apiHandler = apiHandler
         cancellable = favoriteRepository.favorites.sink { [weak self] cdCharacters in
@@ -41,7 +41,7 @@ class FavoriteHandler: FavoriteHandlerProtocol {
     }
 
     @discardableResult
-    func add(id: Int) -> Bool {
+    public func add(id: Int) -> Bool {
         do {
             if favoriteRepository.findById(Int64(id)) == nil {
                 try favoriteRepository.create(id: Int64(id))
@@ -55,7 +55,7 @@ class FavoriteHandler: FavoriteHandlerProtocol {
     }
 
     @discardableResult
-    func delete(id: Int) -> Bool {
+    public func delete(id: Int) -> Bool {
         if favoriteRepository.findById(Int64(id)) != nil {
             return (try? favoriteRepository.delete(id: Int64(id))) != nil
         } else {
@@ -63,7 +63,7 @@ class FavoriteHandler: FavoriteHandlerProtocol {
         }
     }
 
-    func contains(id: Int) -> Bool {
+    public func contains(id: Int) -> Bool {
         return favoriteRepository.findById(Int64(id)) != nil
     }
 

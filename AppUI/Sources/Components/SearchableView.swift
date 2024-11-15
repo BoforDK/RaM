@@ -8,6 +8,7 @@
 import SwiftUI
 
 public struct SearchableView<Content: View, SearchContent: View>: View {
+
     @State var searchText: String = ""
     var prompt: String = ""
     @ViewBuilder var content: () -> Content

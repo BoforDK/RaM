@@ -1,13 +1,12 @@
 //
 //  FavoriteRepository.swift
-//  RaM
+//  AppCore
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
 
 import CoreData
 import Combine
-import AppCore
 
 public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var favorites = CurrentValueSubject<[CDFavorite], Never>([])

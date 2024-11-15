@@ -73,6 +73,9 @@ struct CharacterItemView: View {
 struct CharacterListItem_Previews: PreviewProvider {
     static var previews: some View {
         //swiftlint:disable rule force_unwrapping
-        CharacterItemView(character: defaultCharacter.first!, isFavorite: true)
+        CharacterItemView(
+            character: defaultCharacter.first!,
+            isFavorite: true
+        )
     }
 }

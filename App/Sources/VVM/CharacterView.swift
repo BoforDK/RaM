@@ -8,14 +8,17 @@
 import SwiftUI
 import Swinject
 import AppCore
+import AppUI
 
 struct CharacterView: View {
     var character: Person
     @Environment(\.dismiss) private var dismiss
     @Environment(\.showTabBar) private var showTabBar
     @State var isFavorite: Bool = false
-    let favoriteHandler = Container.shared.resolve(FavoriteHandlerProtocol.self,
-                                                   name: .favoriteHandler)
+    let favoriteHandler = Container.shared.resolve(
+        FavoriteHandlerProtocol.self,
+        name: .favoriteHandler
+    )
     let navigationImageSize: CGFloat = 60
     let navigationImageName = "chevron.left"
     let gridSpacing: CGFloat = 10
