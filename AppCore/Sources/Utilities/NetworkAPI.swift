@@ -25,7 +25,10 @@ public class NetworkAPI: NetworkAPIProtocol {
     private var session: URLSession
     private var allHTTPHeaderFields = ["Content-Type": "application/json"]
 
-    public init(session: URLSession, allHTTPHeaderFields: [String: String]) {
+    public init(
+        session: URLSession,
+        allHTTPHeaderFields: [String: String]
+    ) {
         self.session = session
         self.allHTTPHeaderFields = allHTTPHeaderFields
     }
@@ -48,6 +51,7 @@ public class NetworkAPI: NetworkAPIProtocol {
     ) async throws -> T {
         let data = try await sendRequest(request)
         let decodedData = try JSONDecoder().decode(T.self, from: data)
+
         return decodedData
     }
 
@@ -60,15 +64,20 @@ public class NetworkAPI: NetworkAPIProtocol {
         } else if (response as? HTTPURLResponse)?.statusCode == nil {
             throw URLError(.badServerResponse)
         }
+
         return data
     }
 
-    public func createPostRequest<T: Encodable>(url: URL, object: T) throws -> URLRequest {
+    public func createPostRequest<T: Encodable>(
+        url: URL,
+        object: T
+    ) throws -> URLRequest {
         let jsonData = try JSONEncoder().encode(object)
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
         request.allHTTPHeaderFields = allHTTPHeaderFields
         request.httpBody = jsonData
+
         return request
     }
 
@@ -76,6 +85,7 @@ public class NetworkAPI: NetworkAPIProtocol {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
         request.allHTTPHeaderFields = allHTTPHeaderFields
+
         return request
     }
 

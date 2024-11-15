@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import AppCore
 
 // MARK: - SearchListHandler protocol
 
-protocol SearchHandlerProtocol {
+public protocol SearchHandlerProtocol {
     var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
 
@@ -20,20 +19,20 @@ protocol SearchHandlerProtocol {
 
 // MARK: - SearchListHandler
 
-class SearchHandler: SearchHandlerProtocol {
-    private(set) var characters: [Person] = []
-    private(set) var lastPageWasLoaded = false
+public class SearchHandler: SearchHandlerProtocol {
+    private(set) public var characters: [Person] = []
+    private(set) public var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var searchText: String = ""
     private var oldSearchText: String = ""
     private var currentPage: Int = 0
     private var count: Int? = nil
 
-    init(apiHandler: APIHandlerProtocol) {
+    public init(apiHandler: APIHandlerProtocol) {
         self.apiHandler = apiHandler
     }
 
-    func setSearchText(searchText: String) async throws {
+    public func setSearchText(searchText: String) async throws {
         if searchText == self.searchText {
             return
         }
@@ -43,7 +42,7 @@ class SearchHandler: SearchHandlerProtocol {
         try await loadNextPage()
     }
 
-    func loadNextPage() async throws {
+    public func loadNextPage() async throws {
         currentPage += 1
         if currentPage > count ?? 1 {
             return

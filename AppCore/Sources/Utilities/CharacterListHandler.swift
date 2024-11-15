@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import AppCore
 
 //MARK: - CharacterListHandler protocol
-protocol CharacterListHandlerProtocol {
+public protocol CharacterListHandlerProtocol {
     var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
 
@@ -17,22 +16,25 @@ protocol CharacterListHandlerProtocol {
 }
 
 //MARK: - CharacterListHandler
-class CharacterListHandler: CharacterListHandlerProtocol {
-    private(set) var characters: [Person] = []
-    private(set) var lastPageWasLoaded = false
+public class CharacterListHandler: CharacterListHandlerProtocol {
+
+    private(set) public var characters: [Person] = []
+    private(set) public var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var currentPage: Int = 0
     private var count: Int? = nil
 
-    init(apiHandler: APIHandlerProtocol) {
+    public init(apiHandler: APIHandlerProtocol) {
         self.apiHandler = apiHandler
     }
 
-    func loadNextPage() async throws {
+    public func loadNextPage() async throws {
         currentPage += 1
+
         if currentPage > count ?? 1 {
             return
         }
+
         let page = try await apiHandler.getCharactersPage(page: currentPage)
         count = page.info.pages
         characters.append(contentsOf: page.results)
