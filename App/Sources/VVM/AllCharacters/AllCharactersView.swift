@@ -11,9 +11,11 @@ struct AllCharactersView: View {
     @StateObject var vm = AllCharactersViewModel()
 
     var body: some View {
-        CharacterListView(characters: vm.characters,
-                          favoriteIds: vm.favoriteIds,
-                          lastElementAction: vm.lastPageWasLoaded ? nil : vm.loadNext)
+        CharacterListView(
+            characters: vm.characters,
+            favoriteIds: vm.favoriteIds,
+            lastElementAction: vm.lastPageWasLoaded ? nil : vm.loadNext
+        )
     }
 }
 

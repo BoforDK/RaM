@@ -14,7 +14,7 @@ private let bundleID = "\(AppSetup.current.moduleBundleIDPrefix).ui"
 
 public let appUI = Target.target(
     name: targetName,
-    destinations: .iOS,
+    destinations: [.iPhone, .iPad, .macCatalyst],
     product: .framework,
     bundleId: bundleID,
     infoPlist: .default,
