@@ -14,27 +14,47 @@ public class PersistenceController {
     public let container: NSPersistentContainer
 
     private init() {
-        guard
-            let model = NSManagedObjectModel.mergedModel(
-                from: [
-                    Bundle(for: CDFavorite.self)
-                ]
-            )
-        else {
+        // Locate the Core Data model
+        guard let model = NSManagedObjectModel.mergedModel(
+            from: [Bundle(for: CDFavorite.self)]
+        ) else {
             fatalError("Failed to locate Core Data model")
         }
 
-        container = NSPersistentContainer(name: "RaM", managedObjectModel: model)
-        container.persistentStoreDescriptions.forEach { storeDesc in
-            storeDesc.shouldMigrateStoreAutomatically = true
-            storeDesc.shouldInferMappingModelAutomatically = true
+        // Initialize NSPersistentCloudKitContainer
+        container = NSPersistentCloudKitContainer(name: "RaM", managedObjectModel: model)
+
+        // Configure the persistent store descriptions
+        guard let storeDescription = container.persistentStoreDescriptions.first else {
+            fatalError("No persistent store description found.")
         }
 
+        // Enable CloudKit-specific options
+        storeDescription.setOption(
+            true as NSNumber,
+            forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
+        )
+        storeDescription.setOption(
+            true as NSNumber,
+            forKey: NSPersistentHistoryTrackingKey
+        )
+
+        // Configure the persistent container
         container.loadPersistentStores { description, error in
-            if let error = error {
-                NSLog("Core Data failed to load: \(error.localizedDescription)")
-                fatalError("Core Data failed to load: \(error.localizedDescription) \(self.container.persistentStoreCoordinator.description)")
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+        }
+
+        // Configure the context
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
+        // Optional: Pin to the current query generation
+        do {
+            try container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+            fatalError("Failed to pin viewContext to the current generation: \(error)")
         }
     }
 
