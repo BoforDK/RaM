@@ -19,18 +19,25 @@ final class AllCharactersViewModel: ObservableObject {
     private var cancellable: AnyCancellable!
 
     convenience init() {
-        guard let characterListHandler = Container.shared.resolve(CharacterListHandler.self,
-                                                                  name: .characterListHandler) else {
+        guard let characterListHandler = Container.shared.resolve(
+            CharacterListHandler.self,
+            name: .characterListHandler
+        ) else {
             fatalError("CharacterListHandler has to be init in SwinjectInit")
         }
-        guard let favoriteHandler = Container.shared.resolve(FavoriteHandlerProtocol.self,
-                                                              name: .favoriteHandler) else {
+        guard let favoriteHandler = Container.shared.resolve(
+            FavoriteHandlerProtocol.self,
+            name: .favoriteHandler
+        ) else {
             fatalError("favoritesHandler has to be init in SwinjectInit")
         }
         self.init(characterListHandler: characterListHandler, favoriteHandler: favoriteHandler)
     }
 
-    init(characterListHandler: CharacterListHandlerProtocol, favoriteHandler: FavoriteHandlerProtocol) {
+    init(
+        characterListHandler: CharacterListHandlerProtocol,
+        favoriteHandler: FavoriteHandlerProtocol
+    ) {
         self.characterListHandler = characterListHandler
         self.characters = characterListHandler.characters
         cancellable = favoriteHandler.favorites.sink { [weak self] favorites in
