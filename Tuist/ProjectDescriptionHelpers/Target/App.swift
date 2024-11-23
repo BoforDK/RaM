@@ -17,7 +17,7 @@ public let app: Target = .target(
     bundleId: bundleID,
     infoPlist: .extendingDefault(
         with: [
-            "UIBackgroundModes": ["remote-notification"],
+            "UIBackgroundModes": ["remote-notification"], 
             "CFBundleDisplayName": .string(AppSetup.current.appName),
             "UILaunchScreen": .dictionary([:]),
         ]
