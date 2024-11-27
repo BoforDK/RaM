@@ -18,10 +18,12 @@ public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
         let relationshipFetchReques: NSFetchRequest<CDFavorite> = CDFavorite.fetchRequest()
         let sortByTitle = NSSortDescriptor(key: "id", ascending: true)
         relationshipFetchReques.sortDescriptors = [sortByTitle]
-        fetchController = NSFetchedResultsController(fetchRequest: relationshipFetchReques,
-                                                     managedObjectContext: context,
-                                                     sectionNameKeyPath: nil,
-                                                     cacheName: nil)
+        fetchController = NSFetchedResultsController(
+            fetchRequest: relationshipFetchReques,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
         super.init()
 
         fetchController.delegate = self
@@ -59,7 +61,7 @@ public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 
-        guard let favorites =  controller.fetchedObjects as? [CDFavorite] else {
+        guard let favorites = controller.fetchedObjects as? [CDFavorite] else {
             return
         }
 

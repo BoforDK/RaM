@@ -18,6 +18,7 @@ struct FavoriteView: View {
             characters: vm.characters,
             favoriteIds: vm.characters.map(\.id)
         )
+        .navigationTitle("Favorites")
     }
 }
 

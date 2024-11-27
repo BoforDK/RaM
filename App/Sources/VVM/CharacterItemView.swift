@@ -36,7 +36,7 @@ struct CharacterItemView: View {
     }
 
     func imagePlaceholder() -> some View {
-        Image.placeholder
+        Image.rick
             .resizable()
             .renderingMode(.template)
             .foregroundColor(Color.background)

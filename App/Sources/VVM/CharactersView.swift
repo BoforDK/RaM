@@ -20,6 +20,7 @@ struct CharactersView: View {
             content: charactersListView,
             searchContent: searchContent
         )
+        .navigationTitle("Characters")
     }
 
     func charactersListView() -> some View {

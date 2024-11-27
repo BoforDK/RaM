@@ -104,7 +104,7 @@ struct CharacterView: View {
                 .frame(width: imageSize, height: imageSize)
                 .cornerRadius(DefaultVariables.cornerRadius)
         }, placeholder: {
-            Image.placeholder
+            Image.rick
                 .resizable()
                 .renderingMode(.template)
                 .foregroundColor(Color.background)

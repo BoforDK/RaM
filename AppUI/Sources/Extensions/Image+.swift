@@ -9,5 +9,5 @@ import SwiftUI
 
 public extension Image {
     static var favorite = Image(systemName: "star")
-    static var placeholder = Image(.rick)
+    static var rick = Image(.rick)
 }

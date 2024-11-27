@@ -9,6 +9,10 @@ import ProjectDescription
 
 private let targetName = "App"
 private let bundleID = AppSetup.current.bundleID
+private let sources: [SourceFileGlob] = [
+    "\(targetName)/Sources/**",
+    Configuration.current == .debug ? "\(targetName)/Testing/**" : nil,
+].compactMap { $0 }
 
 public let app: Target = .target(
     name: targetName,
@@ -17,12 +21,12 @@ public let app: Target = .target(
     bundleId: bundleID,
     infoPlist: .extendingDefault(
         with: [
-            "UIBackgroundModes": ["remote-notification"], 
+            "UIBackgroundModes": ["remote-notification"],
             "CFBundleDisplayName": .string(AppSetup.current.appName),
             "UILaunchScreen": .dictionary([:]),
         ]
     ),
-    sources: ["\(targetName)/Sources/**"],
+    sources: .sourceFilesList(globs: sources),
     entitlements: "App/App.entitlements",
     dependencies: [
         .target(appCore),

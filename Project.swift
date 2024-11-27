@@ -5,7 +5,7 @@ let project = Project(
     name: "RaM",
     settings: .settings(
         base: [
-            "IPHONEOS_DEPLOYMENT_TARGET": "16.0",
+            "IPHONEOS_DEPLOYMENT_TARGET": "18.0",
         ]
     ),
     targets: [
