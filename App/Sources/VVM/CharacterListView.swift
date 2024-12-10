@@ -50,6 +50,7 @@ struct CharacterListView: View {
             })
             .buttonStyle(.plain)
             .onAppear {
+                guard characters.isEmpty else { return }
                 if characters.last?.id == character.id {
                     lastElementAction?()
                 }
@@ -73,6 +74,7 @@ struct CharacterListView: View {
         ProgressView()
             .frame(maxWidth: .infinity, alignment: .center)
             .onAppear {
+                guard characters.isEmpty else { return }
                 lastElementAction?()
                 if characters.count != 0 && lastElementAction != nil {
                     lastElementIsVisible = false

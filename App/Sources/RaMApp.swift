@@ -6,17 +6,25 @@
 //
 
 import SwiftUI
+import AppUI
+import UIKit
 
 @main
-struct RaMApp: App {
-    init() {
-        SwinjectInit.initConteiner()
-    }
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var body: some Scene {
-        WindowGroup {
-            RootView()
-                .tint(.accent)
-        }
+    var window: UIWindow?
+    private lazy var appFlowCoordinator = AppFlowCoordinator()
+
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        SwinjectInit.initConteiner()
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        appFlowCoordinator.start(window: window)
+
+        return true
     }
 }

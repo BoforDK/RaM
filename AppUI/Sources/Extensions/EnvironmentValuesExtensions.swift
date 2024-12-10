@@ -1,5 +1,5 @@
 //
-//  EnvironmentValues+.swift
+//  EnvironmentValuesExtensions.swift
 //  AppUI
 //
 //  Created by Alexander Grigorov on 26.01.2023.
