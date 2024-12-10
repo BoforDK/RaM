@@ -24,13 +24,21 @@ final class AppFlowCoordinator {
 
         let charactersView = UINavigationController(
             rootViewController: UIHostingController(
-                rootView: CharactersView()
-                    .tint(.accent)
+                rootView: CharactersView(
+                    showTabBar: {
+                        tabBarVC.setTabBarHidden(!$0, animated: true)
+                    }
+                )
+                .tint(.accent)
             )
         )
         let favoriteView = UINavigationController(
             rootViewController: UIHostingController(
-                rootView: FavoriteView().tint(.accent)
+                rootView: FavoriteView(
+                    showTabBar: {
+                        tabBarVC.setTabBarHidden(!$0, animated: true)
+                    }
+                ).tint(.accent)
             )
         )
 

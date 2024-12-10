@@ -12,18 +12,19 @@ import AppCore
 
 struct FavoriteView: View {
     @ObservedObject var vm = FavoriteViewModel()
+    //todo
+    var showTabBar: (Bool) -> Void
 
     var body: some View {
         CharacterListView(
             characters: vm.characters,
-            favoriteIds: vm.characters.map(\.id)
+            favoriteIds: vm.characters.map(\.id),
+            showTabBar: showTabBar
         )
         .navigationTitle("Favorites")
     }
 }
 
-struct FavoriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoriteView()
-    }
+#Preview {
+    FavoriteView(showTabBar: { _ in })
 }

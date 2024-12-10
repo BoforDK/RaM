@@ -10,10 +10,10 @@ import AppCore
 import AppUI
 
 struct CharacterListView: View {
-    @Environment(\.showTabBar) private var showTabBar
     var characters: [Person] = []
     var favoriteIds: [Int] = []
     var lastElementAction: (() -> Void)?
+    var showTabBar: (Bool) -> Void
     @State var offset: CGFloat = 0.0
     @State var oldOffset: CGFloat = 0.0
     @State var lastElementIsVisible = true
@@ -44,13 +44,12 @@ struct CharacterListView: View {
     func characterList() -> some View {
         ForEach(characters, id: \.id) { character in
             NavigationLink(destination: {
-                CharacterView(character: character)
+                CharacterView(character: character, showTabBar: showTabBar)
             }, label: {
                 characterLabel(character: character)
             })
             .buttonStyle(.plain)
             .onAppear {
-                guard characters.isEmpty else { return }
                 if characters.last?.id == character.id {
                     lastElementAction?()
                 }
@@ -74,7 +73,6 @@ struct CharacterListView: View {
         ProgressView()
             .frame(maxWidth: .infinity, alignment: .center)
             .onAppear {
-                guard characters.isEmpty else { return }
                 lastElementAction?()
                 if characters.count != 0 && lastElementAction != nil {
                     lastElementIsVisible = false
@@ -91,8 +89,8 @@ struct CharacterListView: View {
     }
 }
 
-struct CharacterListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CharacterListView()
-    }
+#Preview {
+    CharacterListView(
+        showTabBar: { _ in }
+    )
 }

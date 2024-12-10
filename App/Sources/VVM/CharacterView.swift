@@ -12,8 +12,8 @@ import AppUI
 
 struct CharacterView: View {
     var character: Person
+    var showTabBar: (Bool) -> Void
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.showTabBar) private var showTabBar
     @State var isFavorite: Bool = false
     let favoriteHandler = Container.shared.resolve(
         FavoriteHandlerProtocol.self,
@@ -24,8 +24,12 @@ struct CharacterView: View {
     let gridSpacing: CGFloat = 10
     let imageSize: CGFloat = 150
 
-    init(character: Person) {
+    init(
+        character: Person,
+        showTabBar: @escaping (Bool) -> Void
+    ) {
         self.character = character
+        self.showTabBar = showTabBar
     }
 
     var body: some View {

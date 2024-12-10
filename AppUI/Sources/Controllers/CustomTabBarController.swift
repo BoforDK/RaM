@@ -16,15 +16,20 @@ public class CustomTabBarController: UITabBarController {
 
     var centerConstraint: NSLayoutConstraint?
     var buttons: [UIButton] = []
+    var isBarAnimationFinished: Bool = true
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         setView()
     }
-
+    
     override public func setTabBarHidden(_ hidden: Bool, animated: Bool) {
-        guard tabbarView.isHidden != hidden else { return }
-
+        guard
+            tabbarView.isHidden != hidden,
+            isBarAnimationFinished
+        else { return }
+        
+        isBarAnimationFinished = false
         let frame = tabbarView.frame
         let offsetY = (frame.height + barBottomOffset) * (hidden ? 1 : -1)
         let duration: TimeInterval = animated ? 0.3 : 0
@@ -37,6 +42,7 @@ public class CustomTabBarController: UITabBarController {
             self.tabbarView.frame = frame.offsetBy(dx: 0, dy: offsetY)
         } completion: { _ in
             self.tabbarView.isHidden = hidden
+            self.isBarAnimationFinished = true
         }
     }
 

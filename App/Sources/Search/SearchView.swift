@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SearchView: View {
-    @Environment(\.showTabBar) private var showTabBar
     @ObservedObject var vm: CharacterSearchViewModel
     @State var characters = [Character]()
     var searchText: String
@@ -16,9 +15,15 @@ struct SearchView: View {
     private var stackSpacing: CGFloat = 15
     private var itemHorizontalPadding: CGFloat = 15
 
-    init(searchText: String) {
+    init(
+        searchText: String,
+        showTabBar: @escaping (Bool) -> Void
+    ) {
         self.searchText = searchText
-        vm = .init(searchText: searchText)
+        vm = .init(
+            searchText: searchText,
+            showTabBar: showTabBar
+        )
     }
 
     var body: some View {
@@ -26,7 +31,7 @@ struct SearchView: View {
             LazyVStack(alignment: .leading, spacing: stackSpacing) {
                 ForEach(vm.characters, id: \.id) { character in
                     NavigationLink(destination: {
-                        CharacterView(character: character)
+                        CharacterView(character: character, showTabBar: vm.showTabBar)
                     }, label: {
                         CharacterItemView(character: character, isFavorite: false)
                             .padding()
@@ -35,7 +40,7 @@ struct SearchView: View {
                     .buttonStyle(.plain)
                 }
                 .onAppear {
-                    showTabBar(false)
+                    vm.showTabBar(false)
                 }
 
                 ProgressView()
@@ -53,7 +58,7 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: "Rick")
+        SearchView(searchText: "Rick", showTabBar: { _ in })
     }
 }
 
