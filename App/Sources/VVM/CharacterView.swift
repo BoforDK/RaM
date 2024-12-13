@@ -61,7 +61,9 @@ struct CharacterView: View {
             }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
-        .onAppear(perform: onAppear)
+        .task {
+            onAppear()
+        }
     }
 
     func toolBarButton() -> some View {

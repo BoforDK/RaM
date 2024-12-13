@@ -9,37 +9,48 @@ import UIKit
 
 public class CustomTabBarController: UITabBarController {
 
+    let barIcons: [UIImage]
     let tabbarView = UIView()
-    let barBottomOffset: CGFloat = 30
     let tabbarItemBackgroundView = UIView()
+    let barBottomOffset: CGFloat = 30
+    let barHeight: CGFloat = 70
     let iconSize = 50
 
-    var centerConstraint: NSLayoutConstraint?
     var buttons: [UIButton] = []
     var isBarAnimationFinished: Bool = true
+
+    public init(barIcons: [UIImage]) {
+        self.barIcons = barIcons
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         setView()
     }
-    
+
     override public func setTabBarHidden(_ hidden: Bool, animated: Bool) {
         guard
             tabbarView.isHidden != hidden,
             isBarAnimationFinished
         else { return }
-        
+
         isBarAnimationFinished = false
-        let frame = tabbarView.frame
-        let offsetY = (frame.height + barBottomOffset) * (hidden ? 1 : -1)
-        let duration: TimeInterval = animated ? 0.3 : 0
+        let frame = self.tabbarView.frame
+        let offsetY = (frame.height + self.barBottomOffset) * (hidden ? 1 : -1)
+        let duration: TimeInterval = animated ? 0.1 : 0
 
         if !hidden {
             self.tabbarView.isHidden = hidden
         }
 
         UIView.animate(withDuration: duration) {
-            self.tabbarView.frame = frame.offsetBy(dx: 0, dy: offsetY)
+            self.tabbarView.frame = self.tabbarView.frame.offsetBy(dx: 0, dy: offsetY)
         } completion: { _ in
             self.tabbarView.isHidden = hidden
             self.isBarAnimationFinished = true
@@ -52,7 +63,7 @@ public class CustomTabBarController: UITabBarController {
         tabbarView.translatesAutoresizingMaskIntoConstraints = false
         tabbarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -barBottomOffset).isActive = true
         tabbarView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        tabbarView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        tabbarView.heightAnchor.constraint(equalToConstant: barHeight).isActive = true
         tabbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tabbarView.layer.cornerRadius = 30
         tabbarView.backgroundColor = .listItem
@@ -76,12 +87,10 @@ public class CustomTabBarController: UITabBarController {
             tabbarView.addSubview(button)
             button.tag = x
 
-            // Constraints
             button.centerYAnchor.constraint(equalTo: tabbarView.centerYAnchor).isActive = true
             button.widthAnchor.constraint(equalTo: tabbarView.widthAnchor, multiplier: 1 / CGFloat(buttons.count)).isActive = true
             button.heightAnchor.constraint(equalTo: tabbarView.heightAnchor).isActive = true
 
-            // Left alignment
             if x == 0 {
                 button.leftAnchor.constraint(equalTo: tabbarView.leftAnchor).isActive = true
                 button.tintColor = .blue
@@ -92,20 +101,12 @@ public class CustomTabBarController: UITabBarController {
 
             button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
-
-        // Activate center constraint for the first button (default selected state)
-        centerConstraint = tabbarItemBackgroundView.centerXAnchor.constraint(equalTo: buttons[0].centerXAnchor)
-        centerConstraint?.isActive = true
     }
 
-    private func generateControllers(){
-        let characters = generateViewControllers(image: .rick, vc: UIViewController())
-        let favorite = generateViewControllers(image: .favorite, vc: UIViewController())
-
-        viewControllers = [
-            characters,
-            favorite,
-        ]
+    public func generateControllers() {
+        viewControllers = barIcons.map {
+            generateViewControllers(image: $0, vc: UIViewController())
+        }
     }
 
     private func generateViewControllers(image: UIImage, vc: UIViewController) -> UIViewController {

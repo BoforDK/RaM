@@ -20,7 +20,12 @@ final class AppFlowCoordinator {
     public func start(window: UIWindow?) {
         self.window = window
 
-        let tabBarVC = CustomTabBarController()
+        let tabBarVC = CustomTabBarController(
+            barIcons: [
+                .rick,
+                .favorite
+            ]
+        )
 
         let charactersView = UINavigationController(
             rootViewController: UIHostingController(

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AllCharactersView: View {
     @StateObject var vm = AllCharactersViewModel()
-    //todo
     var showTabBar: (Bool) -> Void
 
     var body: some View {

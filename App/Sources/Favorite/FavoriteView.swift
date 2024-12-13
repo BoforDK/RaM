@@ -12,7 +12,6 @@ import AppCore
 
 struct FavoriteView: View {
     @ObservedObject var vm = FavoriteViewModel()
-    //todo
     var showTabBar: (Bool) -> Void
 
     var body: some View {
