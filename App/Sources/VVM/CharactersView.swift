@@ -10,12 +10,11 @@ import AppUI
 
 struct CharactersView: View {
     @Environment(\.isSearching) private var isSearching
-    var searchText: String = ""
-    var showTabBar: (Bool) -> Void
+
+    var viewModel: CharactersViewModeling
 
     var body: some View {
         SearchableView(
-            searchText: searchText,
             prompt: "Search character",
             content: charactersListView,
             searchContent: searchContent
@@ -24,23 +23,24 @@ struct CharactersView: View {
     }
 
     func charactersListView() -> some View {
-        AllCharactersView(showTabBar: showTabBar)
+        AllCharactersView(showTabBar: viewModel.showTabBar)
             .background(Color.background)
     }
 
     func searchContent(searchText: String) -> some View {
-        SearchView(searchText: searchText, showTabBar: showTabBar)
+        SearchView(searchText: searchText, showTabBar: viewModel.showTabBar)
             .background(Color.background)
             .onAppear {
-                showTabBar(false)
+                viewModel.showTabBar(isVisible: false)
             }
             .onDisappear {
-                showTabBar(true)
+                viewModel.showTabBar(isVisible: true)
             }
     }
 }
 
 #Preview {
-    CharactersView(showTabBar: { _ in })
+    CharactersView(
+        viewModel: CharactersViewModelMock()
+    )
 }
-

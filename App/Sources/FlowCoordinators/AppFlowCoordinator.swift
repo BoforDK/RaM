@@ -11,16 +11,17 @@ import AppUI
 
 final class AppFlowCoordinator {
 
+    var window: UIWindow?
+    var tabBarVC: CustomTabBarController?
+
     public init(window: UIWindow? = nil) {
         self.window = window
     }
 
-    var window: UIWindow?
-
     public func start(window: UIWindow?) {
         self.window = window
 
-        let tabBarVC = CustomTabBarController(
+        tabBarVC = CustomTabBarController(
             barIcons: [
                 .rick,
                 .favorite
@@ -28,34 +29,38 @@ final class AppFlowCoordinator {
         )
 
         let charactersView = UINavigationController(
-            rootViewController: UIHostingController(
-                rootView: CharactersView(
-                    showTabBar: {
-                        tabBarVC.setTabBarHidden(!$0, animated: true)
-                    }
+            rootViewController: createCharactersViewController(
+                viewModel: createCharactersViewModel(
+                    flowDelegate: self,
+                    homeDependencies: .init()
                 )
-                .tint(.accent)
             )
         )
         let favoriteView = UINavigationController(
             rootViewController: UIHostingController(
                 rootView: FavoriteView(
-                    showTabBar: {
-                        tabBarVC.setTabBarHidden(!$0, animated: true)
+                    showTabBar: { _ in
+//                        tabBarVC.setTabBarHidden(!$0, animated: true)
                     }
                 ).tint(.accent)
             )
         )
 
-        tabBarVC.viewControllers = [
+        tabBarVC?.viewControllers = [
             charactersView,
             favoriteView,
         ]
 
-        tabBarVC.hidesBottomBarWhenPushed = true
-        tabBarVC.selectedIndex = 0
+        tabBarVC?.hidesBottomBarWhenPushed = true
+        tabBarVC?.selectedIndex = 0
 
         window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()
+    }
+}
+
+extension AppFlowCoordinator: CharactersFlowDelegate {
+    func showTabBar(isVisible: Bool) {
+        tabBarVC?.setTabBarHidden(!isVisible, animated: true)
     }
 }
