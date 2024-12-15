@@ -32,7 +32,11 @@ final class AppFlowCoordinator {
             rootViewController: createCharactersViewController(
                 viewModel: createCharactersViewModel(
                     flowDelegate: self,
-                    homeDependencies: .init()
+                    homeDependencies: .init(
+                        characterListHandler: appDependencies.characterListHandler,
+                        favoriteHandler: appDependencies.favoriteHandler,
+                        searchHandler: appDependencies.searchHandler
+                    )
                 )
             )
         )

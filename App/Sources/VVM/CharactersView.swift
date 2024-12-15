@@ -9,12 +9,11 @@ import SwiftUI
 import AppUI
 
 struct CharactersView: View {
-    @Environment(\.isSearching) private var isSearching
-
-    var viewModel: CharactersViewModeling
+    @State var viewModel: CharactersViewModeling
 
     var body: some View {
         SearchableView(
+            searchText: $viewModel.searchText,
             prompt: "Search character",
             content: charactersListView,
             searchContent: searchContent
@@ -23,19 +22,22 @@ struct CharactersView: View {
     }
 
     func charactersListView() -> some View {
-        AllCharactersView(showTabBar: viewModel.showTabBar)
-            .background(Color.background)
+        CharacterListView(
+            characters: viewModel.characters,
+            favoriteIds: viewModel.favoriteIds,
+            lastElementAction: viewModel.lastElementAction,
+            showTabBar: viewModel.actions.showTabBar
+        )
     }
 
     func searchContent(searchText: String) -> some View {
-        SearchView(searchText: searchText, showTabBar: viewModel.showTabBar)
-            .background(Color.background)
-            .onAppear {
-                viewModel.showTabBar(isVisible: false)
-            }
-            .onDisappear {
-                viewModel.showTabBar(isVisible: true)
-            }
+        CharacterListView(
+            characters: viewModel.foundCharacters,
+            favoriteIds: viewModel.favoriteIds,
+            showEmptyView: true,
+            lastElementAction: viewModel.lastElementSearchAction,
+            showTabBar: viewModel.actions.showTabBar
+        )
     }
 }
 

@@ -12,6 +12,7 @@ import AppUI
 struct CharacterListView: View {
     var characters: [Person] = []
     var favoriteIds: [Int] = []
+    var showEmptyView: Bool = false
     var lastElementAction: (() -> Void)?
     var showTabBar: (Bool) -> Void
     @State var offset: CGFloat = 0.0
@@ -22,10 +23,15 @@ struct CharacterListView: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 15) {
-                characterList()
+                if showEmptyView && characters.isEmpty {
+                    //todo
+                    Text("Nothing was found")
+                } else {
+                    characterList()
 
-                progressView()
-                    .opacity(lastElementAction == nil ? 0 : 1)
+                    progressView()
+                        .opacity(lastElementAction == nil ? 0 : 1)
+                }
             }
             .frame(maxWidth: .infinity)
             .modifier(
