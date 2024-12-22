@@ -16,7 +16,6 @@ struct CharacterListView: View {
     var lastElementAction: (() -> Void)?
     var showTabBar: (Bool) -> Void
     @State var offset: CGFloat = 0.0
-    @State var oldOffset: CGFloat = 0.0
     @State var lastElementIsVisible = true
     private let coordinateSpaceName = "SCROLL"
 
@@ -24,8 +23,15 @@ struct CharacterListView: View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 15) {
                 if showEmptyView && characters.isEmpty {
-                    //todo
+                    Image.rick
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .frame(maxWidth: .infinity)
+
                     Text("Nothing was found")
+                        .bold()
+                        .frame(maxWidth: .infinity)
                 } else {
                     characterList()
 
@@ -40,7 +46,7 @@ struct CharacterListView: View {
                     coordinateSpaceName: coordinateSpaceName
                 )
             )
-            .onChange(of: offset, perform: calculateShowingTabBar)
+            .onChange(of: offset, calculateShowingTabBar)
             .onAppear {
                 showTabBar(true)
             }
@@ -89,14 +95,16 @@ struct CharacterListView: View {
             }
     }
 
-    func calculateShowingTabBar(offset: CGFloat) {
-        showTabBar((oldOffset < offset || offset > 0) && lastElementIsVisible)
-        oldOffset = offset
+    func calculateShowingTabBar(oldOffset: CGFloat, newOffset: CGFloat) {
+        showTabBar((oldOffset < newOffset || newOffset > 0) && lastElementIsVisible)
     }
 }
 
+#if DEBUG
 #Preview {
     CharacterListView(
+        characters: .mock,
         showTabBar: { _ in }
     )
 }
+#endif

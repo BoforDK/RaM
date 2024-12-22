@@ -41,8 +41,10 @@ struct CharactersView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     CharactersView(
         viewModel: CharactersViewModelMock()
     )
 }
+#endif

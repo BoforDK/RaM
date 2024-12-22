@@ -60,6 +60,8 @@ public class CustomTabBarController: UITabBarController {
     private func setView(){
         generateControllers()
         view.addSubview(tabbarView)
+        tabBar.isHidden = true
+
         tabbarView.translatesAutoresizingMaskIntoConstraints = false
         tabbarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -barBottomOffset).isActive = true
         tabbarView.widthAnchor.constraint(equalToConstant: 200).isActive = true
