@@ -44,8 +44,14 @@ extension CharactersFlowCoordinator: CharactersFlowDelegate {
     }
 
     func goToCharacterDetail(character: Person) {
-        let characterVC = UIHostingController(
-            rootView: CharacterView(character: character)
+        let characterVC = createCharacterDetailViewController(
+            viewModel: createCharacterDetailViewModel(
+                flowDelegate: self,
+                dependencies: .init(
+                    favoriteHandler: appDependencies.favoriteHandler
+                ),
+                character: character
+            )
         )
 
         let customBackButton = UIBarButtonItem(
@@ -72,5 +78,7 @@ extension CharactersFlowCoordinator: CharactersFlowDelegate {
         charactersVC?.popViewController(animated: true)
     }
 }
+
+extension CharactersFlowCoordinator: CharacterDetailFlowDelegate {}
 
 extension CharactersFlowCoordinator: UIGestureRecognizerDelegate {}

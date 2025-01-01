@@ -11,7 +11,7 @@ import Combine
 import AppCore
 
 struct FavoriteView: View {
-    var viewModel: FavoriteViewModeling
+    @State var viewModel: FavoriteViewModeling
 
     var body: some View {
         CharacterListView(

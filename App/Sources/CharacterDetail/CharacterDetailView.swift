@@ -1,8 +1,8 @@
 //
-//  CharacterView.swift
+//  CharacterDetailView.swift
 //  App
 //
-//  Created by Alexander Grigorov on 26.01.2023.
+//  Created by Alexander Grigorov on 01.01.2025.
 //
 
 import SwiftUI
@@ -10,21 +10,15 @@ import Swinject
 import AppCore
 import AppUI
 
-//todo: ref
-struct CharacterView: View {
-    var character: Person
-    @State var isFavorite: Bool = false
-    let favoriteHandler = Container.shared.resolve(
-        FavoriteHandlerProtocol.self,
-        name: .favoriteHandler
-    )
+struct CharacterDetailView: View {
+    @State var viewModel: CharacterDetailViewModeling
     let navigationImageSize: CGFloat = 60
     let navigationImageName = "chevron.left"
     let gridSpacing: CGFloat = 10
     let imageSize: CGFloat = 150
 
-    init(character: Person) {
-        self.character = character
+    public init(viewModel: CharacterDetailViewModeling) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
@@ -49,23 +43,23 @@ struct CharacterView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
         .task {
-            onAppear()
+            viewModel.actions.onAppear()
         }
     }
 
     func characterInformation() -> some View {
         Grid(alignment: .leading, horizontalSpacing: gridSpacing, verticalSpacing: gridSpacing) {
-            textItem(name: "Status", text: character.status.rawValue)
-            textItem(name: "Species", text: character.species)
-            textItem(name: "Type", text: character.type)
-            textItem(name: "Gender", text: character.gender)
-            textItem(name: "Origin", text: character.origin.name)
-            textItem(name: "Location", text: character.location.name)
+            textItem(name: "Status", text: viewModel.status)
+            textItem(name: "Species", text: viewModel.species)
+            textItem(name: "Type", text: viewModel.type)
+            textItem(name: "Gender", text: viewModel.gender)
+            textItem(name: "Origin", text: viewModel.origin)
+            textItem(name: "Location", text: viewModel.location)
         }
     }
 
     func characterImage() -> some View {
-        AsyncImage(url: URL(string: character.image), content: { image in
+        AsyncImage(url: URL(string: viewModel.image), content: { image in
             image
                 .resizable()
                 .scaledToFit()
@@ -88,14 +82,14 @@ struct CharacterView: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text("Name")
                     .foregroundColor(Color.accent)
-                Text(character.name)
+                Text(viewModel.name)
                     .font(.title)
                     .bold()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            Button(action: toggleFavoriteState, label: {
+            Button(action: viewModel.actions.toggleFavoriteState, label: {
                 Image.favorite
-                    .foregroundColor(isFavorite ? Color.foreground : Color.accent)
+                    .foregroundColor(viewModel.isFavorite ? Color.foreground : Color.accent)
                     .frame(maxHeight: .infinity, alignment: .topTrailing)
             })
         }
@@ -109,21 +103,12 @@ struct CharacterView: View {
                 .bold()
         }
     }
-
-    func toggleFavoriteState() {
-        guard let strongFavoriteHandler = favoriteHandler else {
-            return
-        }
-        if strongFavoriteHandler.contains(id: character.id) {
-            strongFavoriteHandler.delete(id: character.id)
-            isFavorite = false
-        } else {
-            strongFavoriteHandler.add(id: character.id)
-            isFavorite = true
-        }
-    }
-
-    func onAppear() {
-        isFavorite = favoriteHandler?.contains(id: character.id) ?? false
-    }
 }
+
+#if DEBUG
+#Preview {
+    CharacterDetailView(
+        viewModel: CharacterDetailViewModelMock()
+    )
+}
+#endif

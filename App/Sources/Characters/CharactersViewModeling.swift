@@ -44,7 +44,7 @@ public extension CharactersViewModeling where Self: CharactersViewModelingAction
 @Observable
 final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingActions {
     private var characterListHandler: CharacterListHandlerProtocol
-    private var favoriteHandler: FavoriteHandlerProtocol?
+    private var favoriteHandler: FavoriteHandlerProtocol
     private var searchHandler: SearchHandlerProtocol
 
     private weak var flowDelegate: CharactersFlowDelegate?
@@ -77,7 +77,7 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
         self.flowDelegate = flowDelegate
 
         self.characters = characterListHandler.characters
-        cancellable = favoriteHandler?.favorites.sink { [weak self] favorites in
+        cancellable = favoriteHandler.favorites.sink { [weak self] favorites in
             guard let self else { return }
 
             self.favoriteIds = favorites.map { $0.id }
