@@ -31,7 +31,6 @@ public let app: Target = .target(
     dependencies: [
         .target(appCore),
         .target(appUI),
-        .external(name: "Swinject"),
     ],
     settings: .settings(
         base: [

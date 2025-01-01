@@ -11,10 +11,5 @@
 
 let package = Package(
     name: "MyApp",
-    dependencies: [
-        .package(
-            url: "https://github.com/Swinject/Swinject",
-            .upToNextMajor(from: "2.9.1")
-        )
-    ]
+    dependencies: []
 )

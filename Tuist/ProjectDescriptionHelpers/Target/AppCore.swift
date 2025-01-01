@@ -36,7 +36,6 @@ public let appCore = Target.target(
             name: "SwiftLint",
             basedOnDependencyAnalysis: false
         )
-    ]
-,
+    ],
     dependencies: []
 )

@@ -19,8 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        SwinjectInit.initConteiner()
-
         window = UIWindow(frame: UIScreen.main.bounds)
 
         appFlowCoordinator.start(window: window)

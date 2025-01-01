@@ -7,12 +7,11 @@
 
 import SwiftUI
 import AppCore
-import AppUI
 
-struct CharacterListView: View {
-    var characters: [Person] = []
-    var favoriteIds: [Int] = []
-    var showEmptyView: Bool = false
+public struct CharacterListView: View {
+    var characters: [Person]
+    var favoriteIds: [Int]
+    var showEmptyView: Bool
     var goToCharacterDetail: ((Person) -> Void)
     var lastElementAction: (() -> Void)?
     var showTabBar: (Bool) -> Void
@@ -20,7 +19,25 @@ struct CharacterListView: View {
     @State var lastElementIsVisible = true
     private let coordinateSpaceName = "SCROLL"
 
-    var body: some View {
+    public init(
+        characters: [Person],
+        favoriteIds: [Int] = [],
+        showEmptyView: Bool = false,
+        goToCharacterDetail: @escaping (Person) -> Void,
+        lastElementAction: (() -> Void)? = nil,
+        showTabBar: @escaping (Bool) -> Void
+    ) {
+        self.characters = characters
+        self.favoriteIds = favoriteIds
+        self.showEmptyView = showEmptyView
+        self.goToCharacterDetail = goToCharacterDetail
+        self.lastElementAction = lastElementAction
+        self.showTabBar = showTabBar
+        self.offset = offset
+        self.lastElementIsVisible = lastElementIsVisible
+    }
+
+    public var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 15) {
                 if showEmptyView && characters.isEmpty {
