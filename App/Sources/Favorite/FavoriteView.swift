@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import Swinject
 import Combine
 import AppCore
+import AppUI
 
 struct FavoriteView: View {
     @State var viewModel: FavoriteViewModeling
