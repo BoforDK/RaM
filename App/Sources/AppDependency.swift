@@ -7,7 +7,7 @@
 
 import AppCore
 
-final class AppDependency: Sendable {
+final class AppDependency {
     private let favoriteRepository: FavoriteRepository
     private let network: NetworkAPI
     private let apiHandler: APIHandler

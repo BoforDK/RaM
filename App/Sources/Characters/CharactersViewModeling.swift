@@ -22,16 +22,17 @@ public protocol CharactersViewModeling {
 
 public protocol CharactersViewModelingActions {
     func showTabBar(isVisible: Bool)
+    func goToCharacterDetail(character: Person)
 }
 
 public func createCharactersViewModel(
     flowDelegate: CharactersFlowDelegate,
-    homeDependencies: CharacterDependencies
+    homeDependencies: CharactersDependencies
 ) -> CharactersViewModeling {
     let vm = CharactersViewModel(
-        dependencies: homeDependencies
+        dependencies: homeDependencies,
+        flowDelegate: flowDelegate
     )
-    vm.flowDelegate = flowDelegate
 
     return vm
 }
@@ -46,7 +47,7 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
     private var favoriteHandler: FavoriteHandlerProtocol?
     private var searchHandler: SearchHandlerProtocol
 
-    weak var flowDelegate: CharactersFlowDelegate?
+    private weak var flowDelegate: CharactersFlowDelegate?
 
     private var lastPageWasLoaded: Bool = false
     private var lastSearchPageWasLoaded: Bool = false
@@ -67,11 +68,13 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
     private var cancellable: AnyCancellable!
 
     public init(
-        dependencies: CharacterDependencies
+        dependencies: CharactersDependencies,
+        flowDelegate: CharactersFlowDelegate?
     ) {
         self.characterListHandler = dependencies.characterListHandler
         self.favoriteHandler = dependencies.favoriteHandler
         self.searchHandler = dependencies.searchHandler
+        self.flowDelegate = flowDelegate
 
         self.characters = characterListHandler.characters
         cancellable = favoriteHandler?.favorites.sink { [weak self] favorites in
@@ -91,6 +94,10 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
 
     public func showTabBar(isVisible: Bool) {
         flowDelegate?.showTabBar(isVisible: isVisible)
+    }
+
+    public func goToCharacterDetail(character: Person) {
+        flowDelegate?.goToCharacterDetail(character: character)
     }
 
     private func loadNext() {

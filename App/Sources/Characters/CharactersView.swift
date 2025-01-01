@@ -25,6 +25,7 @@ struct CharactersView: View {
         CharacterListView(
             characters: viewModel.characters,
             favoriteIds: viewModel.favoriteIds,
+            goToCharacterDetail: viewModel.actions.goToCharacterDetail(character:),
             lastElementAction: viewModel.lastElementAction,
             showTabBar: viewModel.actions.showTabBar
         )
@@ -35,6 +36,7 @@ struct CharactersView: View {
             characters: viewModel.foundCharacters,
             favoriteIds: viewModel.favoriteIds,
             showEmptyView: true,
+            goToCharacterDetail: viewModel.actions.goToCharacterDetail(character:),
             lastElementAction: viewModel.lastElementSearchAction,
             showTabBar: viewModel.actions.showTabBar
         )

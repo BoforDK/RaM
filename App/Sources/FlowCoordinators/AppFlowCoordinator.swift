@@ -8,18 +8,22 @@
 import UIKit
 import SwiftUI
 import AppUI
+import AppCore
 
 final class AppFlowCoordinator {
 
     var window: UIWindow?
     var tabBarVC: CustomTabBarController?
 
-    public init(window: UIWindow? = nil) {
-        self.window = window
+    let charactersFlowCoordinator: CharactersFlowCoordinator
+
+    public init() {
+        self.charactersFlowCoordinator = CharactersFlowCoordinator()
     }
 
     public func start(window: UIWindow?) {
         self.window = window
+        self.charactersFlowCoordinator.flowDelegate = self
 
         tabBarVC = CustomTabBarController(
             barIcons: [
@@ -28,30 +32,16 @@ final class AppFlowCoordinator {
             ]
         )
 
-        let charactersView = UINavigationController(
-            rootViewController: createCharactersViewController(
-                viewModel: createCharactersViewModel(
-                    flowDelegate: self,
-                    homeDependencies: .init(
-                        characterListHandler: appDependencies.characterListHandler,
-                        favoriteHandler: appDependencies.favoriteHandler,
-                        searchHandler: appDependencies.searchHandler
-                    )
-                )
-            )
-        )
         let favoriteView = UINavigationController(
             rootViewController: UIHostingController(
                 rootView: FavoriteView(
-                    showTabBar: { _ in
-//                        tabBarVC.setTabBarHidden(!$0, animated: true)
-                    }
+                    showTabBar: showTabBar(isVisible:)
                 ).tint(.accent)
             )
         )
 
         tabBarVC?.viewControllers = [
-            charactersView,
+            charactersFlowCoordinator.start(),
             favoriteView,
         ]
 
@@ -63,7 +53,7 @@ final class AppFlowCoordinator {
     }
 }
 
-extension AppFlowCoordinator: CharactersFlowDelegate {
+extension AppFlowCoordinator: CharactersFlowCoordinatorDelegate {
     func showTabBar(isVisible: Bool) {
         tabBarVC?.setTabBarHidden(!isVisible, animated: true)
     }

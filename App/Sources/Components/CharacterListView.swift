@@ -13,6 +13,7 @@ struct CharacterListView: View {
     var characters: [Person] = []
     var favoriteIds: [Int] = []
     var showEmptyView: Bool = false
+    var goToCharacterDetail: ((Person) -> Void)
     var lastElementAction: (() -> Void)?
     var showTabBar: (Bool) -> Void
     @State var offset: CGFloat = 0.0
@@ -47,19 +48,16 @@ struct CharacterListView: View {
                 )
             )
             .onChange(of: offset, calculateShowingTabBar)
-            .onAppear {
-                showTabBar(true)
-            }
         }
     }
 
     func characterList() -> some View {
         ForEach(characters, id: \.id) { character in
-            NavigationLink(destination: {
-                CharacterView(character: character, showTabBar: showTabBar)
-            }, label: {
+            Button {
+                goToCharacterDetail(character)
+            } label: {
                 characterLabel(character: character)
-            })
+            }
             .buttonStyle(.plain)
             .onAppear {
                 if characters.last?.id == character.id {
@@ -104,6 +102,7 @@ struct CharacterListView: View {
 #Preview {
     CharacterListView(
         characters: .mock,
+        goToCharacterDetail: { _ in },
         showTabBar: { _ in }
     )
 }

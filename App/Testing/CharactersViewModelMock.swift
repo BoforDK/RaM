@@ -32,4 +32,5 @@ final class CharactersViewModelMock: CharactersViewModeling, CharactersViewModel
     }
 
     func showTabBar(isVisible: Bool) {}
+    func goToCharacterDetail(character: AppCore.Person) {}
 }

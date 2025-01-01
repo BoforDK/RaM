@@ -78,7 +78,11 @@ public class CustomTabBarController: UITabBarController {
 
         tabbarView.addSubview(tabbarItemBackgroundView)
         tabbarItemBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        tabbarItemBackgroundView.widthAnchor.constraint(equalTo: tabbarView.widthAnchor, multiplier: 1/CGFloat(buttons.count), constant: -10).isActive = true
+        tabbarItemBackgroundView.widthAnchor.constraint(
+            equalTo: tabbarView.widthAnchor,
+            multiplier: 1/CGFloat(buttons.count),
+            constant: -10
+        ).isActive = true
         tabbarItemBackgroundView.heightAnchor.constraint(equalTo: tabbarView.heightAnchor, constant: -10).isActive = true
         tabbarItemBackgroundView.centerYAnchor.constraint(equalTo: tabbarView.centerYAnchor).isActive = true
         tabbarItemBackgroundView.layer.cornerRadius = 25

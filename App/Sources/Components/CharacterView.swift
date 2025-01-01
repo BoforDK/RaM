@@ -10,10 +10,9 @@ import Swinject
 import AppCore
 import AppUI
 
+//todo: ref
 struct CharacterView: View {
     var character: Person
-    var showTabBar: (Bool) -> Void
-    @Environment(\.dismiss) private var dismiss
     @State var isFavorite: Bool = false
     let favoriteHandler = Container.shared.resolve(
         FavoriteHandlerProtocol.self,
@@ -24,12 +23,8 @@ struct CharacterView: View {
     let gridSpacing: CGFloat = 10
     let imageSize: CGFloat = 150
 
-    init(
-        character: Person,
-        showTabBar: @escaping (Bool) -> Void
-    ) {
+    init(character: Person) {
         self.character = character
-        self.showTabBar = showTabBar
     }
 
     var body: some View {
@@ -52,43 +47,10 @@ struct CharacterView: View {
             .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .background(Color.background)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                toolBarButton()
-            }
-        }
-        .toolbarBackground(.hidden, for: .navigationBar)
         .task {
             onAppear()
         }
-    }
-
-    func toolBarButton() -> some View {
-        Button(action: {
-            showTabBar(true)
-            dismiss()
-        }, label: {
-            HStack {
-                Image(systemName: navigationImageName)
-                    .frame(height: navigationImageSize)
-                    .fontWeight(.bold)
-                    .foregroundColor(.gray)
-                    .padding(.leading, 5)
-
-                Text(character.name)
-                    .foregroundColor(.gray)
-                    .padding(5)
-            }
-            .background {
-                Capsule()
-                    .fill(Color.background)
-                    .opacity(0.7)
-            }
-        })
-        .buttonStyle(.plain)
     }
 
     func characterInformation() -> some View {
@@ -162,7 +124,6 @@ struct CharacterView: View {
     }
 
     func onAppear() {
-        showTabBar(false)
         isFavorite = favoriteHandler?.contains(id: character.id) ?? false
     }
 }

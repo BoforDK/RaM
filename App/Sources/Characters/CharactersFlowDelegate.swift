@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import AppCore
 
 public protocol CharactersFlowDelegate: AnyObject {
     func showTabBar(isVisible: Bool)
+    func goToCharacterDetail(character: Person)
+    func back()
 }
 
 public func createCharactersViewController(

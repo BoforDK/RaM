@@ -18,6 +18,8 @@ struct FavoriteView: View {
         CharacterListView(
             characters: vm.characters,
             favoriteIds: vm.characters.map(\.id),
+            //todo
+            goToCharacterDetail: { _ in },
             showTabBar: showTabBar
         )
         .navigationTitle("Favorites")
