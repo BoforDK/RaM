@@ -11,21 +11,21 @@ import Combine
 import AppCore
 
 struct FavoriteView: View {
-    @ObservedObject var vm = FavoriteViewModel()
-    var showTabBar: (Bool) -> Void
+    var viewModel: FavoriteViewModeling
 
     var body: some View {
         CharacterListView(
-            characters: vm.characters,
-            favoriteIds: vm.characters.map(\.id),
-            //todo
-            goToCharacterDetail: { _ in },
-            showTabBar: showTabBar
+            characters: viewModel.characters,
+            favoriteIds: viewModel.characters.map(\.id),
+            goToCharacterDetail: viewModel.actions.goToCharacterDetail,
+            showTabBar: viewModel.actions.showTabBar
         )
         .navigationTitle("Favorites")
     }
 }
 
+#if DEBUG
 #Preview {
-    FavoriteView(showTabBar: { _ in })
+    FavoriteView(viewModel: FavoriteViewModelMock())
 }
+#endif

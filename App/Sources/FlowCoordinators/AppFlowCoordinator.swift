@@ -16,9 +16,11 @@ final class AppFlowCoordinator {
     var tabBarVC: CustomTabBarController?
 
     let charactersFlowCoordinator: CharactersFlowCoordinator
+    let favoriteFlowCoordinator: FavoriteFlowCoordinator
 
     public init() {
         self.charactersFlowCoordinator = CharactersFlowCoordinator()
+        self.favoriteFlowCoordinator = FavoriteFlowCoordinator()
     }
 
     public func start(window: UIWindow?) {
@@ -32,17 +34,9 @@ final class AppFlowCoordinator {
             ]
         )
 
-        let favoriteView = UINavigationController(
-            rootViewController: UIHostingController(
-                rootView: FavoriteView(
-                    showTabBar: showTabBar(isVisible:)
-                ).tint(.accent)
-            )
-        )
-
         tabBarVC?.viewControllers = [
             charactersFlowCoordinator.start(),
-            favoriteView,
+            favoriteFlowCoordinator.start(),
         ]
 
         tabBarVC?.hidesBottomBarWhenPushed = true
