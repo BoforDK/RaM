@@ -73,7 +73,7 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
                 let characters = try await apiHandler.getCharacters(ids: ids)
                 await setCharacters(characters: characters)
             } catch {
-                fatalError()
+                fatalError("Not implemented yet")
             }
         }
     }

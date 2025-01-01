@@ -9,6 +9,10 @@ import ProjectDescription
 
 private let targetName = "AppCore"
 private let bundleID = "\(AppSetup.current.moduleBundleIDPrefix).core"
+private let sources: [SourceFileGlob] = [
+    "\(targetName)/Sources/**",
+    Configuration.current == .debug ? "\(targetName)/Testing/**" : nil,
+].compactMap { $0 }
 
 // MARK: - Target
 
@@ -18,7 +22,7 @@ public let appCore = Target.target(
     product: .framework,
     bundleId: bundleID,
     infoPlist: .default,
-    sources: "\(targetName)/Sources/**",
+    sources: .sourceFilesList(globs: sources),
     resources: [
         "\(targetName)/Resources/**",
     ],

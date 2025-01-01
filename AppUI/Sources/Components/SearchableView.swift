@@ -9,18 +9,18 @@ import SwiftUI
 
 public struct SearchableView<Content: View, SearchContent: View>: View {
 
-    @State var searchText: String = ""
+    @Binding var searchText: String
     var prompt: String = ""
     @ViewBuilder var content: () -> Content
     @ViewBuilder var searchContent: (String) -> SearchContent
 
     public init(
-        searchText: String = "",
+        searchText: Binding<String>,
         prompt: String = "",
         @ViewBuilder content: @escaping () -> Content,
         @ViewBuilder searchContent: @escaping (String) -> SearchContent
     ) {
-        self._searchText = .init(initialValue: searchText)
+        self._searchText = searchText
         self.prompt = prompt
         self.content = content
         self.searchContent = searchContent

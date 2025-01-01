@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - SearchListHandler protocol
 
+//TODO: ref
 public protocol SearchHandlerProtocol {
     var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
@@ -70,4 +71,3 @@ public class SearchHandler: SearchHandlerProtocol {
         count = nil
     }
 }
-

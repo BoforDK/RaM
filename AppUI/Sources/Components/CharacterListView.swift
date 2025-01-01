@@ -10,22 +10,35 @@ import AppCore
 import AppUI
 
 struct CharacterListView: View {
-    @Environment(\.showTabBar) private var showTabBar
     var characters: [Person] = []
     var favoriteIds: [Int] = []
+    var showEmptyView: Bool = false
+    var goToCharacterDetail: ((Person) -> Void)
     var lastElementAction: (() -> Void)?
+    var showTabBar: (Bool) -> Void
     @State var offset: CGFloat = 0.0
-    @State var oldOffset: CGFloat = 0.0
     @State var lastElementIsVisible = true
     private let coordinateSpaceName = "SCROLL"
 
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 15) {
-                characterList()
+                if showEmptyView && characters.isEmpty {
+                    Image.rick
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .frame(maxWidth: .infinity)
 
-                progressView()
-                    .opacity(lastElementAction == nil ? 0 : 1)
+                    Text("Nothing was found")
+                        .bold()
+                        .frame(maxWidth: .infinity)
+                } else {
+                    characterList()
+
+                    progressView()
+                        .opacity(lastElementAction == nil ? 0 : 1)
+                }
             }
             .frame(maxWidth: .infinity)
             .modifier(
@@ -34,20 +47,17 @@ struct CharacterListView: View {
                     coordinateSpaceName: coordinateSpaceName
                 )
             )
-            .onChange(of: offset, perform: calculateShowingTabBar)
-            .onAppear {
-                showTabBar(true)
-            }
+            .onChange(of: offset, calculateShowingTabBar)
         }
     }
 
     func characterList() -> some View {
         ForEach(characters, id: \.id) { character in
-            NavigationLink(destination: {
-                CharacterView(character: character)
-            }, label: {
+            Button {
+                goToCharacterDetail(character)
+            } label: {
                 characterLabel(character: character)
-            })
+            }
             .buttonStyle(.plain)
             .onAppear {
                 if characters.last?.id == character.id {
@@ -83,14 +93,17 @@ struct CharacterListView: View {
             }
     }
 
-    func calculateShowingTabBar(offset: CGFloat) {
-        showTabBar((oldOffset < offset || offset > 0) && lastElementIsVisible)
-        oldOffset = offset
+    func calculateShowingTabBar(oldOffset: CGFloat, newOffset: CGFloat) {
+        showTabBar((oldOffset < newOffset || newOffset > 0) && lastElementIsVisible)
     }
 }
 
-struct CharacterListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CharacterListView()
-    }
+#if DEBUG
+#Preview {
+    CharacterListView(
+        characters: .mock,
+        goToCharacterDetail: { _ in },
+        showTabBar: { _ in }
+    )
 }
+#endif

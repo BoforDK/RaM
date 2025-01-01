@@ -16,11 +16,15 @@ only_rules:
   - vertical_whitespace
   - weak_delegate
   - overridden_super_call
+included: # paths to include during linting. `--path` is ignored if present.
+  - App
+  - AppCore
+  - AppUI
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
   - .build
-  - Path/To/SPM/Dependency
+  - Path
   - Tuist/.build
 force_cast: warning # implicitly
 function_body_length:

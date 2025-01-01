@@ -1,5 +1,5 @@
 //
-//  Color+.swift
+//  ColorExtensions.swift
 //  AppUI
 //
 //  Created by Alexander Grigorov on 26.01.2023.
@@ -12,4 +12,5 @@ public extension Color {
     static var listItem = Color(.listItem)
     static var accent = Color.gray
     static var foreground = Color.blue
+    static var selectedAccent = Color.blue
 }

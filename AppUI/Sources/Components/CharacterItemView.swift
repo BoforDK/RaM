@@ -36,7 +36,7 @@ struct CharacterItemView: View {
     }
 
     func imagePlaceholder() -> some View {
-        Image.placeholder
+        Image.rick
             .resizable()
             .renderingMode(.template)
             .foregroundColor(Color.background)
@@ -70,12 +70,11 @@ struct CharacterItemView: View {
     }
 }
 
-struct CharacterListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        //swiftlint:disable rule force_unwrapping
-        CharacterItemView(
-            character: defaultCharacter.first!,
-            isFavorite: true
-        )
-    }
+#if DEBUG
+#Preview {
+    CharacterItemView(
+        character: .mock(),
+        isFavorite: true
+    )
 }
+#endif
