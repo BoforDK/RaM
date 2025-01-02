@@ -8,7 +8,6 @@
 import Foundation
 
 //MARK: - CharacterListHandler protocol
-//TODO: ref
 public protocol CharacterListHandlerProtocol {
     var characters: [Person] { get }
     var lastPageWasLoaded: Bool { get }
