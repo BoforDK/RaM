@@ -10,7 +10,7 @@ import XCTest
 import UIKit
 import SwiftUI
 
-@testable import App
+@testable import Favorite
 
 final class FavoriteViewTest: XCTestCase {
     public func test_snapshot() {

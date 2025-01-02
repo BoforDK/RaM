@@ -10,7 +10,7 @@ import XCTest
 import UIKit
 import SwiftUI
 
-@testable import App
+@testable import CharacterDetail
 
 final class CharacterDetailViewTest: XCTestCase {
     public func test_snapshot() {
