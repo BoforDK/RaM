@@ -11,5 +11,10 @@
 
 let package = Package(
     name: "MyApp",
-    dependencies: []
+    dependencies: [
+        .package(
+            url: "https://github.com/pointfreeco/swift-snapshot-testing",
+            .upToNextMajor(from: "1.17.6")
+        )
+    ]
 )

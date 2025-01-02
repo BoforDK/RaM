@@ -21,5 +21,7 @@ public let appUI = Target.target(
     sources: "\(targetName)/Sources/**",
     resources: ["\(targetName)/Resources/**"],
     entitlements: nil,
-    dependencies: []
+    dependencies: [
+        .target(appCore),
+    ]
 )

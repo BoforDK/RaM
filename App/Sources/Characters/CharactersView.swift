@@ -15,6 +15,7 @@ struct CharactersView: View {
         SearchableView(
             searchText: $viewModel.searchText,
             prompt: "Search character",
+            initIsSearching: viewModel.initIsSearching,
             content: charactersListView,
             searchContent: searchContent
         )

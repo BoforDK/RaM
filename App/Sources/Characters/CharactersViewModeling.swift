@@ -13,6 +13,7 @@ public protocol CharactersViewModeling {
     var actions: CharactersViewModelingActions { get }
 
     var searchText: String { get set }
+    var initIsSearching: Bool { get }
     var characters: [Person] { get }
     var foundCharacters: [Person] { get }
     var favoriteIds: [Int] { get }
@@ -61,6 +62,7 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
             }
         }
     }
+    var initIsSearching: Bool = false
     var characters: [Person] = []
     var foundCharacters: [Person] = []
     var favoriteIds: [Int] = []

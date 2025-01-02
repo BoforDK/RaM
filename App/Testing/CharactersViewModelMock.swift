@@ -9,6 +9,7 @@ import AppCore
 
 final class CharactersViewModelMock: CharactersViewModeling, CharactersViewModelingActions {
     var searchText: String
+    var initIsSearching: Bool
     var characters: [Person]
     var foundCharacters: [Person]
     var favoriteIds: [Int]
@@ -17,6 +18,7 @@ final class CharactersViewModelMock: CharactersViewModeling, CharactersViewModel
 
     public init(
         searchText: String = "",
+        initIsSearching: Bool = false,
         characters: [Person] = .mock,
         foundCharacters: [Person] = [],
         favoriteIds: [Int] = [1, 3, 5, 7],
@@ -24,6 +26,7 @@ final class CharactersViewModelMock: CharactersViewModeling, CharactersViewModel
         lastElementSearchAction: (() -> Void)? = nil
     ) {
         self.searchText = searchText
+        self.initIsSearching = initIsSearching
         self.characters = characters
         self.foundCharacters = foundCharacters
         self.favoriteIds = favoriteIds

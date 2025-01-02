@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Swinject
 import Combine
 import AppCore
 import AppUI

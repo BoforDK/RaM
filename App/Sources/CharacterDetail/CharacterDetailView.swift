@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Swinject
 import AppCore
 import AppUI
 

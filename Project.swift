@@ -10,6 +10,7 @@ let project = Project(
     ),
     targets: [
         app,
+        appTests,
         appCore,
         appUI,
     ]

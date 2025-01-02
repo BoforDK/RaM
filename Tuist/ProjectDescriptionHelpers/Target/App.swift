@@ -50,5 +50,6 @@ public let appTests: Target = .target(
     resources: [],
     dependencies: [
         .target(name: targetName),
+        .external(name: "SnapshotTesting"),
     ]
 )
