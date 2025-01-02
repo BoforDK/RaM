@@ -10,7 +10,6 @@ let project = Project(
     ),
     targets: [
         app,
-        appTests,
         appCore,
         appUI,
         
@@ -19,6 +18,9 @@ let project = Project(
         
         favorite,
         favoriteTests,
+        
+        characterDetail,
+        characterDetailTests,
     ]
 )
 

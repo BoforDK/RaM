@@ -1,6 +1,6 @@
 //
 //  CharacterDetailTest.swift
-//  AppTests
+//  CharacterDetail
 //
 //  Created by Alexander Grigorov on 02.01.2025.
 //

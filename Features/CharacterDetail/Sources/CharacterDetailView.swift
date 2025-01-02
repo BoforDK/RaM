@@ -1,6 +1,6 @@
 //
 //  CharacterDetailView.swift
-//  App
+//  CharacterDetail
 //
 //  Created by Alexander Grigorov on 01.01.2025.
 //
