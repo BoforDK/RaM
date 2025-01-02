@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import AppUI
 import AppCore
+import Favorite
 
 public protocol FavoriteFlowCoordinatorDelegate: AnyObject {
     func showTabBar(isVisible: Bool)

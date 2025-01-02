@@ -16,6 +16,9 @@ let project = Project(
         
         characters,
         charactersTests,
+        
+        favorite,
+        favoriteTests,
     ]
 )
 

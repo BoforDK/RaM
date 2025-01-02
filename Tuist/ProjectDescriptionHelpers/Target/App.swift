@@ -30,6 +30,7 @@ public let app: Target = .target(
     entitlements: "App/App.entitlements",
     dependencies: [
         .target(characters),
+        .target(favorite),
         .target(appCore),
         .target(appUI),
     ],

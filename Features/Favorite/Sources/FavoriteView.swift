@@ -1,6 +1,6 @@
 //
 //  FavoriteView.swift
-//  App
+//  Favorite
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //
