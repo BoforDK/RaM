@@ -1,6 +1,6 @@
 //
 //  CharactersView.swift
-//  App
+//  Characters
 //
 //  Created by Alexander Grigorov on 26.01.2023.
 //

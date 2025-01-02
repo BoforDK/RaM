@@ -13,6 +13,9 @@ let project = Project(
         appTests,
         appCore,
         appUI,
+        
+        characters,
+        charactersTests,
     ]
 )
 

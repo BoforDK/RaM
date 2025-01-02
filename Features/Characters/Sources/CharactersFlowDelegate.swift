@@ -1,6 +1,6 @@
 //
 //  CharactersFlowDelegate.swift
-//  App
+//  Characters
 //
 //  Created by Alexander Grigorov on 14.12.2024.
 //

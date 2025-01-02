@@ -1,6 +1,6 @@
 //
-//  Untitled.swift
-//  AppTests
+//  CharactersViewTest.swift
+//  CharactersTests
 //
 //  Created by Alexander Grigorov on 01.01.2025.
 //
@@ -10,7 +10,7 @@ import XCTest
 import UIKit
 import SwiftUI
 
-@testable import App
+@testable import Characters
 
 final class CharactersViewTest: XCTestCase {
     public func test_snapshot() {

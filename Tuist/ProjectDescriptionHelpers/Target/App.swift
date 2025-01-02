@@ -29,6 +29,7 @@ public let app: Target = .target(
     sources: .sourceFilesList(globs: sources),
     entitlements: "App/App.entitlements",
     dependencies: [
+        .target(characters),
         .target(appCore),
         .target(appUI),
     ],
