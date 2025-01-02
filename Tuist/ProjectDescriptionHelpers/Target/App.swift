@@ -10,8 +10,7 @@ import ProjectDescription
 private let targetName = "App"
 private let bundleID = AppSetup.current.bundleID
 private let sources: [SourceFileGlob] = [
-    "\(targetName)/Sources/**",
-    Configuration.current == .debug ? "\(targetName)/Testing/**" : nil,
+    "\(targetName)/Sources/**"
 ].compactMap { $0 }
 
 public let app: Target = .target(
@@ -29,6 +28,9 @@ public let app: Target = .target(
     sources: .sourceFilesList(globs: sources),
     entitlements: "App/App.entitlements",
     dependencies: [
+        .target(characters),
+        .target(favorite),
+        .target(characterDetail),
         .target(appCore),
         .target(appUI),
     ],
@@ -38,18 +40,4 @@ public let app: Target = .target(
         ],
         configurations: AppSetup.current.projectConfigurations
     )
-)
-
-public let appTests: Target = .target(
-    name: "\(targetName)Tests",
-    destinations: [.iPhone, .iPad, .macCatalyst],
-    product: .unitTests,
-    bundleId: "\(bundleID).tests",
-    infoPlist: .default,
-    sources: ["\(targetName)/Tests/**"],
-    resources: [],
-    dependencies: [
-        .target(name: targetName),
-        .external(name: "SnapshotTesting"),
-    ]
 )

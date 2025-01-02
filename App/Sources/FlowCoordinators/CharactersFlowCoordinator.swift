@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 import AppUI
 import AppCore
+import Characters
+import CharacterDetail
 
 public protocol CharactersFlowCoordinatorDelegate: AnyObject {
     func showTabBar(isVisible: Bool)
