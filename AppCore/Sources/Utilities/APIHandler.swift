@@ -41,7 +41,10 @@ public class APIHandler: APIHandlerProtocol {
             source: LinkSource.characters,
             page: page,
             queryItems: [
-                .init(name: LinkSource.filterByName, value: name)
+                .init(
+                    name: LinkSource.filterByName,
+                    value: name.replacingOccurrences(of: " ", with: "+")
+                )
             ]
         )
     }

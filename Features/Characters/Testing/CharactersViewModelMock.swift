@@ -8,6 +8,8 @@
 import AppCore
 
 final class CharactersViewModelMock: CharactersViewModeling, CharactersViewModelingActions {
+    var isListError: Bool = false
+    var isSearchError: Bool = false
     var searchText: String
     var initIsSearching: Bool
     var characters: [Person]
@@ -34,6 +36,8 @@ final class CharactersViewModelMock: CharactersViewModeling, CharactersViewModel
         self.lastElementSearchAction = lastElementSearchAction
     }
 
+    func retrySearch() {}
+    func retryList() {}
     func showTabBar(isVisible: Bool) {}
-    func goToCharacterDetail(character: AppCore.Person) {}
+    func goToCharacterDetail(character: Person) {}
 }

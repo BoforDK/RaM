@@ -21,6 +21,7 @@ struct FavoriteView: View {
             showTabBar: viewModel.actions.showTabBar
         )
         .navigationTitle("Favorites")
+        .background(Color.background)
     }
 }
 

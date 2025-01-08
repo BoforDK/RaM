@@ -8,6 +8,7 @@
 import Foundation
 
 public final class CharacterDetailViewModelMock: CharacterDetailViewModeling, CharacterDetailViewModelingActions {
+    public var isError: Bool
     public var isFavorite: Bool
     public var name: String
     public var status: String
@@ -19,6 +20,7 @@ public final class CharacterDetailViewModelMock: CharacterDetailViewModeling, Ch
     public var image: String
 
     public init(
+        isError: Bool = false,
         isFavorite: Bool = true,
         name: String = "Rick Sanchez",
         status: String = "Alive",
@@ -29,6 +31,7 @@ public final class CharacterDetailViewModelMock: CharacterDetailViewModeling, Ch
         location: String = "Citadel of Ricks",
         image: String = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
     ) {
+        self.isError = isError
         self.isFavorite = isFavorite
         self.name = name
         self.status = status
@@ -42,4 +45,5 @@ public final class CharacterDetailViewModelMock: CharacterDetailViewModeling, Ch
 
     public func onAppear() {}
     public func toggleFavoriteState() {}
+    public func retry() {}
 }

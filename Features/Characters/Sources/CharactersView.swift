@@ -19,6 +19,7 @@ struct CharactersView: View {
             content: charactersListView,
             searchContent: searchContent
         )
+        .background(Color.background)
         .navigationTitle("Characters")
     }
 
@@ -30,6 +31,10 @@ struct CharactersView: View {
             lastElementAction: viewModel.lastElementAction,
             showTabBar: viewModel.actions.showTabBar
         )
+        .errorState(
+            isError: viewModel.isListError,
+            action: viewModel.actions.retryList
+        )
     }
 
     func searchContent(searchText: String) -> some View {
@@ -40,6 +45,10 @@ struct CharactersView: View {
             goToCharacterDetail: viewModel.actions.goToCharacterDetail(character:),
             lastElementAction: viewModel.lastElementSearchAction,
             showTabBar: viewModel.actions.showTabBar
+        )
+        .errorState(
+            isError: viewModel.isSearchError,
+            action: viewModel.actions.retrySearch
         )
     }
 }

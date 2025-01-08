@@ -8,7 +8,8 @@
 import UIKit
 
 public extension UIImage {
-    static let favorite = UIImage(systemName: "star")!
+    static let favorite = UIImage(systemName: "star")
+    static let persons = UIImage(systemName: "person.3")
     static let rick = UIImage(resource: .rick)
 }
 

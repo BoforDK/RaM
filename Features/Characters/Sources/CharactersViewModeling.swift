@@ -12,6 +12,8 @@ import AppCore
 public protocol CharactersViewModeling {
     var actions: CharactersViewModelingActions { get }
 
+    var isListError: Bool { get }
+    var isSearchError: Bool { get }
     var searchText: String { get set }
     var initIsSearching: Bool { get }
     var characters: [Person] { get }
@@ -24,6 +26,8 @@ public protocol CharactersViewModeling {
 public protocol CharactersViewModelingActions {
     func showTabBar(isVisible: Bool)
     func goToCharacterDetail(character: Person)
+    func retrySearch()
+    func retryList()
 }
 
 public func createCharactersViewModel(
@@ -49,16 +53,21 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
     private var searchHandler: SearchHandlerProtocol
 
     private weak var flowDelegate: CharactersFlowDelegate?
-
+    
+    private(set) public var isListError: Bool = false
+    private(set) public var isSearchError: Bool = false
     private var lastPageWasLoaded: Bool = false
     private var lastSearchPageWasLoaded: Bool = false
 
     var searchText: String = "" {
         didSet {
             Task {
-                try! await searchHandler.setSearchText(searchText: searchText)
-                await setFoundCharacters(characters: searchHandler.characters)
-                print(searchHandler.characters)
+                do {
+                    try await searchHandler.setSearchText(searchText: searchText)
+                    await setFoundCharacters(characters: searchHandler.characters)
+                } catch {
+                    isSearchError = true
+                }
             }
         }
     }
@@ -101,6 +110,16 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
     public func goToCharacterDetail(character: Person) {
         flowDelegate?.goToCharacterDetail(character: character)
     }
+    
+    func retrySearch() {
+        isSearchError = false
+        loadSearchNext()
+    }
+    
+    func retryList() {
+        isListError = false
+        loadNext()
+    }
 
     private func loadNext() {
         Task {
@@ -109,7 +128,9 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
 
                 await setCharacters(characters: characters)
                 await setLastPageWasLoaded(characterListHandler.lastPageWasLoaded)
-            } catch {}
+            } catch {
+                isListError = true
+            }
         }
     }
 
@@ -120,7 +141,9 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
 
                 await setFoundCharacters(characters: searchHandler.characters)
                 await setSearchLastPageWasLoaded(searchHandler.lastPageWasLoaded)
-            } catch {}
+            } catch {
+                isSearchError = true
+            }
         }
     }
 

@@ -11,8 +11,8 @@ public struct SearchableView<Content: View, SearchContent: View>: View {
 
     @Binding var searchText: String
     @FocusState var isSearching: Bool
-    var prompt: String = ""
-    var initIsSearching: Bool
+    let prompt: String
+    let initIsSearching: Bool
     @ViewBuilder var content: () -> Content
     @ViewBuilder var searchContent: (String) -> SearchContent
 

@@ -15,11 +15,11 @@ public class FavoriteRepository: NSObject, NSFetchedResultsControllerDelegate {
 
     public override init() {
         context = PersistenceController.shared.container.viewContext
-        let relationshipFetchReques: NSFetchRequest<CDFavorite> = CDFavorite.fetchRequest()
+        let relationshipFetchRequest: NSFetchRequest<CDFavorite> = CDFavorite.fetchRequest()
         let sortByTitle = NSSortDescriptor(key: "id", ascending: true)
-        relationshipFetchReques.sortDescriptors = [sortByTitle]
+        relationshipFetchRequest.sortDescriptors = [sortByTitle]
         fetchController = NSFetchedResultsController(
-            fetchRequest: relationshipFetchReques,
+            fetchRequest: relationshipFetchRequest,
             managedObjectContext: context,
             sectionNameKeyPath: nil,
             cacheName: nil

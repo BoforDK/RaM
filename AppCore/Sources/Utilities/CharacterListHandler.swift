@@ -22,22 +22,24 @@ public class CharacterListHandler: CharacterListHandlerProtocol {
     private(set) public var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var currentPage: Int = 0
-    private var count: Int? = nil
+    private var count: Int = 0
 
     public init(apiHandler: APIHandlerProtocol) {
         self.apiHandler = apiHandler
     }
 
     public func loadNextPage() async throws {
-        currentPage += 1
-
-        if currentPage > count ?? 1 {
+        if
+            currentPage > 0,
+            currentPage >= count
+        {
             return
         }
 
-        let page = try await apiHandler.getCharactersPage(page: currentPage)
+        let page = try await apiHandler.getCharactersPage(page: currentPage + 1)
+        currentPage += 1
         count = page.info.pages
         characters.append(contentsOf: page.results)
-        lastPageWasLoaded = currentPage >= (count ?? 1)
+        lastPageWasLoaded = currentPage >= count
     }
 }
