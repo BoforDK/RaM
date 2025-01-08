@@ -13,7 +13,7 @@ import AppCore
 final class AppFlowCoordinator {
 
     var window: UIWindow?
-    var tabBarVC: CustomTabBarController?
+    var tabBarVC: UITabBarController?
 
     let charactersFlowCoordinator: CharactersFlowCoordinator
     let favoriteFlowCoordinator: FavoriteFlowCoordinator
@@ -27,20 +27,16 @@ final class AppFlowCoordinator {
         self.window = window
         self.charactersFlowCoordinator.flowDelegate = self
 
-        tabBarVC = CustomTabBarController(
-            barIcons: [
-                .rick,
-                .favorite
-            ]
-        )
+        let firstVC = charactersFlowCoordinator.start()
+        firstVC.tabBarItem = UITabBarItem(title: "", image: .persons, tag: 0)
 
-        tabBarVC?.viewControllers = [
-            charactersFlowCoordinator.start(),
-            favoriteFlowCoordinator.start(),
-        ]
+        let secondVC = favoriteFlowCoordinator.start()
+        secondVC.tabBarItem = UITabBarItem(title: "", image: .favorite, tag: 1)
 
-        tabBarVC?.hidesBottomBarWhenPushed = true
-        tabBarVC?.selectedIndex = 0
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [firstVC, secondVC]
+
+        tabBarVC = tabBarController
 
         window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()
