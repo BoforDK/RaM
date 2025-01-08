@@ -38,10 +38,13 @@ public class APIHandler: APIHandlerProtocol {
         page: Int
     ) async throws -> CharactersPage {
         try await getCharactersPage(
-            source: LinkSource.filter,
+            source: LinkSource.characters,
             page: page,
             queryItems: [
-                .init(name: LinkSource.filterByName, value: name)
+                .init(
+                    name: LinkSource.filterByName,
+                    value: name.replacingOccurrences(of: " ", with: "+")
+                )
             ]
         )
     }
@@ -52,7 +55,9 @@ public class APIHandler: APIHandlerProtocol {
         } else if ids.isEmpty {
             return []
         } else {
-            var stringIds = ids.reduce("", {"\($0),\($1)"})
+            var stringIds = ids
+                .map(String.init)
+                .joined(separator: ",")
 
             if !stringIds.isEmpty {
                 stringIds.removeFirst()
@@ -64,8 +69,10 @@ public class APIHandler: APIHandlerProtocol {
                 throw URLError(.badServerResponse)
             }
 
-            let request = try networkAPI.createGetRequest(url: url)
-            let characters = try await networkAPI.sendRequest(type: [Person].self, request)
+            let characters = try await networkAPI.sendGetRequest(
+                type: [Person].self,
+                url: url
+            )
 
             return characters
         }
@@ -78,8 +85,10 @@ public class APIHandler: APIHandlerProtocol {
             throw URLError(.badServerResponse)
         }
 
-        let request = try networkAPI.createGetRequest(url: url)
-        let character = try await networkAPI.sendRequest(type: Person.self, request)
+        let character = try await networkAPI.sendGetRequest(
+            type: Person.self,
+            url: url
+        )
 
         return character
     }
@@ -95,10 +104,9 @@ public class APIHandler: APIHandlerProtocol {
 
         url.append(queryItems: [.init(name: LinkSource.pageParam, value: "\(page)")])
         url.append(queryItems: queryItems)
-        let request = try networkAPI.createGetRequest(url: url)
-        let charactersPage = try await networkAPI.sendRequest(
+        let charactersPage = try await networkAPI.sendGetRequest(
             type: CharactersPage.self,
-            request
+            url: url
         )
 
         return charactersPage

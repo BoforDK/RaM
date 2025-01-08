@@ -11,6 +11,7 @@ import AppCore
 public protocol CharacterDetailViewModeling {
     var actions: CharacterDetailViewModelingActions { get }
 
+    var isError: Bool { get }
     var isFavorite: Bool { get }
     var name: String { get }
     var status: String { get }
@@ -25,6 +26,7 @@ public protocol CharacterDetailViewModeling {
 public protocol CharacterDetailViewModelingActions {
     func onAppear()
     func toggleFavoriteState()
+    func retry()
 }
 
 public func createCharacterDetailViewModel(
@@ -62,6 +64,10 @@ final class CharacterDetailViewModel: CharacterDetailViewModeling, CharacterDeta
         self.favoriteHandler = dependencies.favoriteHandler
         self.flowDelegate = flowDelegate
         self.character = character
+    }
+    
+    public var isError: Bool {
+        favoriteHandler.isError
     }
 
     public var name: String {
@@ -108,5 +114,9 @@ final class CharacterDetailViewModel: CharacterDetailViewModeling, CharacterDeta
             favoriteHandler.add(id: character.id)
             isFavorite = true
         }
+    }
+    
+    func retry() {
+        favoriteHandler.retry()
     }
 }

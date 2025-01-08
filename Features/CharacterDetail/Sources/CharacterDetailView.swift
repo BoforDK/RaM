@@ -41,6 +41,10 @@ struct CharacterDetailView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
+        .errorState(
+            isError: viewModel.isError,
+            action: viewModel.actions.retry
+        )
         .task {
             viewModel.actions.onAppear()
         }
@@ -81,11 +85,13 @@ struct CharacterDetailView: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text("Name")
                     .foregroundColor(Color.accent)
+                
                 Text(viewModel.name)
                     .font(.title)
                     .bold()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            
             Button(action: viewModel.actions.toggleFavoriteState, label: {
                 Image.favorite
                     .foregroundColor(viewModel.isFavorite ? Color.foreground : Color.accent)
@@ -98,6 +104,7 @@ struct CharacterDetailView: View {
         GridRow {
             Text(name)
                 .foregroundColor(Color.accent)
+            
             Text(text.isEmpty ? "–" : text)
                 .bold()
         }

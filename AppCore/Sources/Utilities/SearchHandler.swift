@@ -24,9 +24,8 @@ public class SearchHandler: SearchHandlerProtocol {
     private(set) public var lastPageWasLoaded = false
     private let apiHandler: APIHandlerProtocol
     private var searchText: String = ""
-    private var oldSearchText: String = ""
     private var currentPage: Int = 0
-    private var count: Int? = nil
+    private var count: Int = 0
 
     public init(apiHandler: APIHandlerProtocol) {
         self.apiHandler = apiHandler
@@ -43,30 +42,36 @@ public class SearchHandler: SearchHandlerProtocol {
     }
 
     public func loadNextPage() async throws {
-        currentPage += 1
-        if currentPage > count ?? 1 {
+        if
+            currentPage > 0,
+            currentPage >= count
+        {
             return
         }
+
         if searchText.isEmpty {
             characters = []
             lastPageWasLoaded = true
         } else {
-            let text = searchText.replacingOccurrences(of: " ", with: "+")
-            if !text.isEmpty {
-                let page = try? await apiHandler.getSearchPage(name: text, page: currentPage)
-                count = page?.info.count
-                characters.append(contentsOf: page?.results ?? [])
+            if
+                !searchText.isEmpty
+            {
+                let page = try await apiHandler.getSearchPage(
+                    name: searchText,
+                    page: currentPage + 1
+                )
+                currentPage += 1
+                count = page.info.count
+                characters.append(contentsOf: page.results)
             }
-            lastPageWasLoaded = currentPage >= (count ?? 1)
+            lastPageWasLoaded = currentPage >= count
         }
-        oldSearchText = searchText
     }
 
     private func reset() {
         characters = []
         lastPageWasLoaded = false
-        oldSearchText = ""
         currentPage = 0
-        count = nil
+        count = 0
     }
 }

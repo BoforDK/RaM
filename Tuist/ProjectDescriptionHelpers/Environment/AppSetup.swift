@@ -15,6 +15,7 @@ public struct AppSetup {
     public let environment: Environment
     public let configuration: Configuration
     public let moduleBundleIDPrefix = "com.ram"
+    public let teamID: String = "YUZLMRGGBB"
 
     public var bundleID: String {
         switch (configuration, environment) {
@@ -53,18 +54,7 @@ public struct AppSetup {
         }
     }
 
-    public var teamID: String {
-        "YUZLMRGGBB"
-    }
-
-    public var codeSignStyle: String {
-        switch configuration {
-        case .debug:
-            return "Automatic"
-        case .beta, .release:
-            return "Manual"
-        }
-    }
+    public var codeSignStyle: String = "Automatic"
 }
 
 extension AppSetup: CustomStringConvertible {

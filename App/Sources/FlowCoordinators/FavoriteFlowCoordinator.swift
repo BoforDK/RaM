@@ -16,7 +16,7 @@ public protocol FavoriteFlowCoordinatorDelegate: AnyObject {
     func showTabBar(isVisible: Bool)
 }
 
-final class FavoriteFlowCoordinator: UIViewController {
+final class FavoriteFlowCoordinator {
 
     var charactersVC: UINavigationController?
     weak var flowDelegate: FavoriteFlowCoordinatorDelegate?
@@ -55,22 +55,8 @@ extension FavoriteFlowCoordinator: FavoriteFlowDelegate {
             )
         )
 
-        let customBackButton = UIBarButtonItem(
-            title: character.name,
-            style: .plain,
-            target: self,
-            action: #selector(back)
-        )
-        customBackButton.tintColor = .gray
-
-        characterVC.navigationItem.leftBarButtonItem = customBackButton
-        characterVC.navigationItem.hidesBackButton = true
-
         charactersVC?.pushViewController(characterVC, animated: true)
-        charactersVC?.interactivePopGestureRecognizer?.delegate = self
-        charactersVC?.interactivePopGestureRecognizer?.isEnabled = true
         DispatchQueue.main.async {
-            characterVC.navigationItem.hidesBackButton = true
             self.showTabBar(isVisible: true)
         }
     }
@@ -81,5 +67,3 @@ extension FavoriteFlowCoordinator: FavoriteFlowDelegate {
 }
 
 extension FavoriteFlowCoordinator: CharacterDetailFlowDelegate {}
-
-extension FavoriteFlowCoordinator: UIGestureRecognizerDelegate {}

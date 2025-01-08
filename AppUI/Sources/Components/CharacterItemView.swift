@@ -9,8 +9,8 @@ import SwiftUI
 import AppCore
 
 struct CharacterItemView: View {
-    var character: Person
-    var isFavorite: Bool
+    let character: Person
+    let isFavorite: Bool
 
     var body: some View {
         HStack(alignment: .top) {
@@ -25,14 +25,16 @@ struct CharacterItemView: View {
     }
 
     func characterImage() -> some View {
-        AsyncImage(url: URL(string: character.image),
-                   content: { image in
-            image
-                .resizable()
-                .scaledToFit()
-                .frame(width: 60, height: 60)
-                .cornerRadius(10)
-        }, placeholder: imagePlaceholder)
+        AsyncImage(
+            url: URL(string: character.image),
+            content: { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 60, height: 60)
+                    .cornerRadius(10)
+            },
+            placeholder: imagePlaceholder)
     }
 
     func imagePlaceholder() -> some View {
@@ -48,14 +50,14 @@ struct CharacterItemView: View {
     func characterInformation() -> some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text("\(character.name)")
+                Text(character.name)
                     .font(.title3)
                     .fontWeight(.heavy)
                 Image.favorite
                     .foregroundColor(Color.foreground)
                     .opacity(isFavorite ? 1 : 0)
             }
-            Text("\(character.status.rawValue)")
+            Text(character.status.rawValue)
                 .fontWeight(.semibold)
                 .foregroundColor(.gray)
         }

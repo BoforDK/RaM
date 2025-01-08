@@ -9,12 +9,12 @@ import SwiftUI
 import AppCore
 
 public struct CharacterListView: View {
-    var characters: [Person]
-    var favoriteIds: [Int]
-    var showEmptyView: Bool
-    var goToCharacterDetail: ((Person) -> Void)
-    var lastElementAction: (() -> Void)?
-    var showTabBar: (Bool) -> Void
+    let characters: [Person]
+    let favoriteIds: [Int]
+    let showEmptyView: Bool
+    let goToCharacterDetail: ((Person) -> Void)
+    let lastElementAction: (() -> Void)?
+    let showTabBar: (Bool) -> Void
     @State var offset: CGFloat = 0.0
     @State var lastElementIsVisible = true
     private let coordinateSpaceName = "SCROLL"
@@ -39,8 +39,8 @@ public struct CharacterListView: View {
 
     public var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 15) {
-                if showEmptyView && characters.isEmpty {
+            if showEmptyView && characters.isEmpty {
+                VStack(spacing: 20) {
                     Image.rick
                         .resizable()
                         .scaledToFit()
@@ -50,21 +50,25 @@ public struct CharacterListView: View {
                     Text("Nothing was found")
                         .bold()
                         .frame(maxWidth: .infinity)
-                } else {
+                }
+                .frame(maxWidth: .infinity)
+            } else {
+                LazyVStack(alignment: .leading, spacing: 15) {
                     characterList()
 
                     progressView()
                         .opacity(lastElementAction == nil ? 0 : 1)
                 }
-            }
-            .frame(maxWidth: .infinity)
-            .modifier(
-                OffsetModifier(
-                    offset: $offset,
-                    coordinateSpaceName: coordinateSpaceName
+                .frame(maxWidth: .infinity)
+                .coordinateSpace(name: coordinateSpaceName)
+                .modifier(
+                    OffsetModifier(
+                        offset: $offset,
+                        coordinateSpaceName: coordinateSpaceName
+                    )
                 )
-            )
-            .onChange(of: offset, calculateShowingTabBar)
+                .onChange(of: offset, calculateShowingTabBar)
+            }
         }
     }
 
@@ -101,6 +105,7 @@ public struct CharacterListView: View {
             .frame(maxWidth: .infinity, alignment: .center)
             .onAppear {
                 lastElementAction?()
+
                 if characters.count != 0 && lastElementAction != nil {
                     lastElementIsVisible = false
                 }

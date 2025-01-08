@@ -12,22 +12,25 @@ import Combine
 
 public protocol FavoriteHandlerProtocol {
     var favorites: CurrentValueSubject<[Person], Never> { get }
+    var isError: Bool { get }
 
     @discardableResult
     func add(id: Int) -> Bool
     @discardableResult
     func delete(id: Int) -> Bool
     func contains(id: Int) -> Bool
+    func retry()
 }
 
 // MARK: - FavoriteHandler
 
 public class FavoriteHandler: FavoriteHandlerProtocol {
 
-    private let favoriteRepository: FavoriteRepository
     private(set) public var favorites = CurrentValueSubject<[Person], Never>([])
+    private(set) public var isError: Bool = false
+    private let favoriteRepository: FavoriteRepository
     private var cancellable: AnyCancellable!
-    private var apiHandler: APIHandler
+    private let apiHandler: APIHandler
 
     public init(favoriteRepository: FavoriteRepository, apiHandler: APIHandler) {
         self.favoriteRepository = favoriteRepository
@@ -43,7 +46,7 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
     @discardableResult
     public func add(id: Int) -> Bool {
         do {
-            if favoriteRepository.findById(Int64(id)) == nil {
+            if !contains(id: id) {
                 try favoriteRepository.create(id: Int64(id))
                 return true
             } else {
@@ -56,9 +59,14 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
 
     @discardableResult
     public func delete(id: Int) -> Bool {
-        if favoriteRepository.findById(Int64(id)) != nil {
-            return (try? favoriteRepository.delete(id: Int64(id))) != nil
-        } else {
+        do {
+            if contains(id: id) {
+                try favoriteRepository.delete(id: Int64(id))
+                return true
+            } else {
+                return false
+            }
+        } catch {
             return false
         }
     }
@@ -67,13 +75,20 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
         return favoriteRepository.findById(Int64(id)) != nil
     }
 
+    public func retry() {
+        getCharacter(
+            ids: favoriteRepository.favorites.value.map { Int($0.id) }
+        )
+    }
+
     private func getCharacter(ids: [Int]) {
         Task {
             do {
                 let characters = try await apiHandler.getCharacters(ids: ids)
                 await setCharacters(characters: characters)
+                isError = false
             } catch {
-                fatalError("Not implemented yet")
+                isError = true
             }
         }
     }
