@@ -16,7 +16,7 @@ public protocol CharactersFlowCoordinatorDelegate: AnyObject {
     func showTabBar(isVisible: Bool)
 }
 
-final class CharactersFlowCoordinator: UIViewController {
+final class CharactersFlowCoordinator {
 
     var charactersVC: UINavigationController?
     weak var flowDelegate: CharactersFlowCoordinatorDelegate?
@@ -56,22 +56,8 @@ extension CharactersFlowCoordinator: CharactersFlowDelegate {
             )
         )
 
-        let customBackButton = UIBarButtonItem(
-            title: character.name,
-            style: .plain,
-            target: self,
-            action: #selector(back)
-        )
-        customBackButton.tintColor = .gray
-
-        characterVC.navigationItem.leftBarButtonItem = customBackButton
-        characterVC.navigationItem.hidesBackButton = true
-
         charactersVC?.pushViewController(characterVC, animated: true)
-        charactersVC?.interactivePopGestureRecognizer?.delegate = self
-        charactersVC?.interactivePopGestureRecognizer?.isEnabled = true
         DispatchQueue.main.async {
-            characterVC.navigationItem.hidesBackButton = true
             self.showTabBar(isVisible: true)
         }
     }
@@ -82,5 +68,3 @@ extension CharactersFlowCoordinator: CharactersFlowDelegate {
 }
 
 extension CharactersFlowCoordinator: CharacterDetailFlowDelegate {}
-
-extension CharactersFlowCoordinator: UIGestureRecognizerDelegate {}
