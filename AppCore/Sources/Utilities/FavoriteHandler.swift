@@ -36,10 +36,10 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
         self.favoriteRepository = favoriteRepository
         self.apiHandler = apiHandler
         cancellable = favoriteRepository.favorites.sink { [weak self] cdCharacters in
-            guard let strongSelf = self else {
+            guard let self = self else {
                 return
             }
-            strongSelf.getCharacter(ids: cdCharacters.map { Int($0.id) })
+            self.getCharacter(ids: cdCharacters.map { Int($0.id) })
         }
     }
 
@@ -85,7 +85,9 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
         Task {
             do {
                 let characters = try await apiHandler.getCharacters(ids: ids)
-                await setCharacters(characters: characters)
+                await setCharacters(
+                    characters: ApiPersonToPersonMapper().map(from: characters)
+                )
                 isError = false
             } catch {
                 isError = true

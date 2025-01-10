@@ -1,11 +1,11 @@
 //
-//  Location.swift
+//  ApiLocation.swift
 //  AppCore
 //
-//  Created by Alexander Grigorov on 24.01.2023.
+//  Created by Alexander Grigorov on 10.01.2025.
 //
 
-public struct Location {
+public struct ApiLocation: Decodable {
 
     public let name: String
 
