@@ -36,10 +36,10 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
         self.favoriteRepository = favoriteRepository
         self.apiHandler = apiHandler
         cancellable = favoriteRepository.favorites.sink { [weak self] cdCharacters in
-            guard let strongSelf = self else {
+            guard let self = self else {
                 return
             }
-            strongSelf.getCharacter(ids: cdCharacters.map { Int($0.id) })
+            self.getCharacter(ids: cdCharacters.map { Int($0.id) })
         }
     }
 

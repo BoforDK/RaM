@@ -59,10 +59,6 @@ public class APIHandler: APIHandlerProtocol {
                 .map(String.init)
                 .joined(separator: ",")
 
-            if !stringIds.isEmpty {
-                stringIds.removeFirst()
-            }
-
             let stringURL = "\(LinkSource.characters)/\(stringIds)"
 
             guard let url = URL(string: stringURL) else {
