@@ -85,7 +85,9 @@ public class FavoriteHandler: FavoriteHandlerProtocol {
         Task {
             do {
                 let characters = try await apiHandler.getCharacters(ids: ids)
-                await setCharacters(characters: characters)
+                await setCharacters(
+                    characters: ApiPersonToPersonMapper().map(from: characters)
+                )
                 isError = false
             } catch {
                 isError = true

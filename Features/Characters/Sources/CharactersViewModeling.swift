@@ -61,6 +61,7 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
 
     var searchText: String = "" {
         didSet {
+            isSearchError = false
             Task {
                 do {
                     try await searchHandler.setSearchText(searchText: searchText)
@@ -138,7 +139,7 @@ final class CharactersViewModel: CharactersViewModeling, CharactersViewModelingA
         Task {
             do {
                 try await searchHandler.loadNextPage()
-
+                
                 await setFoundCharacters(characters: searchHandler.characters)
                 await setSearchLastPageWasLoaded(searchHandler.lastPageWasLoaded)
             } catch {

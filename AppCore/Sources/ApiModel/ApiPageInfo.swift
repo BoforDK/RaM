@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PageInfo: Decodable {
+public struct ApiPageInfo: Decodable {
 
     public let count: Int
     public let pages: Int

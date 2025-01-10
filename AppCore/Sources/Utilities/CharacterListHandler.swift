@@ -38,8 +38,23 @@ public class CharacterListHandler: CharacterListHandlerProtocol {
 
         let page = try await apiHandler.getCharactersPage(page: currentPage + 1)
         currentPage += 1
-        count = page.info.pages
-        characters.append(contentsOf: page.results)
-        lastPageWasLoaded = currentPage >= count
+
+        if
+            page.error == nil,
+            let info = page.info,
+            let results = page.results
+        {
+            count = info.pages
+            characters.append(
+                contentsOf: ApiPersonToPersonMapper().map(from: results)
+            )
+            lastPageWasLoaded = currentPage >= count
+        } else if page.error == .emptyResults {
+            return
+        } else if let error = page.error {
+            throw error
+        } else {
+            throw URLError(.unknown)
+        }
     }
 }

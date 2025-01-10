@@ -10,10 +10,10 @@ import Foundation
 // MARK: - APIHandler protocol
 
 public protocol APIHandlerProtocol {
-    func getCharactersPage(page: Int) async throws -> CharactersPage
-    func getSearchPage(name: String, page: Int) async throws -> CharactersPage
-    func getCharacters(ids: [Int]) async throws -> [Person]
-    func getCharacter(id: Int) async throws -> Person
+    func getCharactersPage(page: Int) async throws -> ApiCharactersPage
+    func getSearchPage(name: String, page: Int) async throws -> ApiCharactersPage
+    func getCharacters(ids: [Int]) async throws -> [ApiPerson]
+    func getCharacter(id: Int) async throws -> ApiPerson
 }
 
 // MARK: - APIHandler
@@ -26,7 +26,7 @@ public class APIHandler: APIHandlerProtocol {
         self.networkAPI = networkAPI
     }
 
-    public func getCharactersPage(page: Int) async throws -> CharactersPage {
+    public func getCharactersPage(page: Int) async throws -> ApiCharactersPage {
         try await getCharactersPage(
             source: LinkSource.charactersPage,
             page: page
@@ -36,7 +36,7 @@ public class APIHandler: APIHandlerProtocol {
     public func getSearchPage(
         name: String,
         page: Int
-    ) async throws -> CharactersPage {
+    ) async throws -> ApiCharactersPage {
         try await getCharactersPage(
             source: LinkSource.characters,
             page: page,
@@ -49,7 +49,7 @@ public class APIHandler: APIHandlerProtocol {
         )
     }
 
-    public func getCharacters(ids: [Int]) async throws -> [Person] {
+    public func getCharacters(ids: [Int]) async throws -> [ApiPerson] {
         if ids.count == 1 {
             return [try await getCharacter(id: ids[0])]
         } else if ids.isEmpty {
@@ -70,7 +70,7 @@ public class APIHandler: APIHandlerProtocol {
             }
 
             let characters = try await networkAPI.sendGetRequest(
-                type: [Person].self,
+                type: [ApiPerson].self,
                 url: url
             )
 
@@ -78,7 +78,7 @@ public class APIHandler: APIHandlerProtocol {
         }
     }
 
-    public func getCharacter(id: Int) async throws -> Person {
+    public func getCharacter(id: Int) async throws -> ApiPerson {
         let stringURL = "\(LinkSource.characters)/\(id)"
 
         guard let url = URL(string: stringURL) else {
@@ -86,7 +86,7 @@ public class APIHandler: APIHandlerProtocol {
         }
 
         let character = try await networkAPI.sendGetRequest(
-            type: Person.self,
+            type: ApiPerson.self,
             url: url
         )
 
@@ -97,7 +97,7 @@ public class APIHandler: APIHandlerProtocol {
         source: String,
         page: Int,
         queryItems: [URLQueryItem] = []
-    ) async throws -> CharactersPage {
+    ) async throws -> ApiCharactersPage {
         guard var url = URL(string: source) else {
             throw URLError(.badServerResponse)
         }
@@ -105,7 +105,7 @@ public class APIHandler: APIHandlerProtocol {
         url.append(queryItems: [.init(name: LinkSource.pageParam, value: "\(page)")])
         url.append(queryItems: queryItems)
         let charactersPage = try await networkAPI.sendGetRequest(
-            type: CharactersPage.self,
+            type: ApiCharactersPage.self,
             url: url
         )
 
